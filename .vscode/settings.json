@@ -1,0 +1,12 @@
+{
+  "workbench.colorTheme": "One Dark (Sublime)",
+  "[javascriptreact]": {
+    "editor.rulers": [80]
+  },
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "prettier.eslintIntegration": true,
+  "javascript.validate.enable": false,
+  "json.format.enable": false
+}

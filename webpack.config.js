@@ -28,9 +28,9 @@ const plugins = [
   new HtmlWebpackPlugin({
     title: 'Github Viewer',
     filename: 'index.html',
-    template: './src/client/index.html',
+    template: './public/index.html',
     inject: true,
-    //favicon: './src/client/favicon.ico'
+    //favicon: './public/favicon.ico'
   }),
 
   new webpack.DefinePlugin({

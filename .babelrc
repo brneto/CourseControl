@@ -1,11 +1,14 @@
 {
-	"presets": ["env", "react"],
+	"presets": [
+    ["env",  {
+      "targets": { "node": "current" }
+    }]
+  ],
 	"plugins": [
-		"react-hot-loader/babel",
 		"transform-decorators-legacy",
 		"transform-class-properties",
 		"transform-object-rest-spread",
-		"transform-function-bind",
-		"syntax-dynamic-import"
-	]
+    "transform-function-bind",
+    "dynamic-import-node"
+  ]
 }

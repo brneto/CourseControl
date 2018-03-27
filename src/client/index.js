@@ -9,8 +9,7 @@ import { loadAuthors } from './redux/thunks/authorThunks';
 import { Routes } from './components/Routes';
 import App from './components/App';
 import { DevTools } from './redux/utils/DevTools';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'toastr/build/toastr.min.css';
+import './index.scss';
 
 async function renderApp() {
   const store = await getStore(initialState);

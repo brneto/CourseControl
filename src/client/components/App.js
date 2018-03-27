@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
@@ -11,6 +12,7 @@ function mapStateToProps(state) {
   };
 }
 
+@hot(module)
 @connect(mapStateToProps)
 export default class App extends Component {
   static propTypes = {

@@ -14,7 +14,7 @@
 	  "msjsdiag.debugger-for-chrome",
 	  "EditorConfig.editorconfig",
 	  "esbenp.prettier-vscode",
-      "mikestead.dotenv",
-      "Orta.vscode-jest"
+    "mikestead.dotenv",
+    "Orta.vscode-jest"
 	]
 }

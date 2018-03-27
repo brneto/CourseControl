@@ -14,21 +14,11 @@ max_line_length=80
 
 # Matches multiple files with brace expansion notation
 # 2 space indentation
-[*.{js,json,py,html,xml}]
+[*.{js,json,py,html,xml,scss,travis.yml,babelrc}]
 indent_style = space
 indent_size = 2
 
 # Set trailing whitespace override for all Markdown files
 [*.md]
 trim_trailing_whitespace = false
-
-# Indentation override for all JS under lib directory
-[lib/**.js]
-indent_style = space
-indent_size = 2
-
-# Matches the exact files either package.json or .travis.yml
-[{package.json,.travis.yml}]
-indent_style = space
-indent_size = 2
 

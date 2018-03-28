@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
 import { hot } from 'react-hot-loader';
-import { history } from './Routes';
+import { ConnectedRouter } from 'react-router-redux';
+import { history, Routes } from '../routes';
 import Header from './common/Header';
 
 function mapStateToProps(state) {
   return {
-    loading: state.get('ajaxCallsInProgress') > 0,
+    loading: state.get('ajaxCallsInProgress') > 0
   };
 }
 
@@ -16,17 +16,16 @@ function mapStateToProps(state) {
 @connect(mapStateToProps)
 class App extends Component {
   static propTypes = {
-    children: PropTypes.object.isRequired,
-    loading: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired
   };
 
   render() {
-    const { children, loading } = this.props;
+    const { loading } = this.props;
     return (
       <ConnectedRouter history={history}>
         <div className="container-fluid">
           <Header loading={loading} />
-          {children}
+          <Routes />
         </div>
       </ConnectedRouter>
     );

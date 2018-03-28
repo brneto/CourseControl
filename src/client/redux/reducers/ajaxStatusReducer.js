@@ -1,10 +1,6 @@
 import { types } from '../actions/ajaxStatusActions';
-import initialState from '../store/initialState';
 
-const ajaxStatusReducer = (
-  state = initialState.get('ajaxCallsInProgress'),
-  action
-) => {
+const ajaxStatusReducer = (state = 0, action) => {
   if (
     action.type === types.AJAX_CALL_BEGIN ||
     action.type.endsWith('_REQUEST')

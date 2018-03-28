@@ -1,8 +1,7 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 import { types } from '../actions/courseActions';
-import initialState from '../store/initialState';
 
-const courseReducer = (state = initialState.get('courses'), action) => {
+const courseReducer = (state = new List(), action) => {
   switch(action.type) {
     case types.LOAD_COURSES_SUCCESS:
       return fromJS(action.courses);

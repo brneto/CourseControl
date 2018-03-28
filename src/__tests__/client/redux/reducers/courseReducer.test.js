@@ -1,4 +1,4 @@
-import initialState from '../../../../client/redux/store/initialState';
+import { initialState } from '../../../../client/redux/store';
 import courseReducer from '../../../../client/redux/reducers/courseReducer';
 import  * as courseActions from '../../../../client/redux/actions/courseActions';
 

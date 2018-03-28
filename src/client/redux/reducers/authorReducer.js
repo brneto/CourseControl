@@ -1,8 +1,7 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS, List, Map } from 'immutable';
 import { types } from '../actions/authorActions';
-import initialState from '../store/initialState';
 
-const authorReducer = (state = initialState.get('authors'), action) => {
+const authorReducer = (state = new List(), action) => {
   switch(action.type) {
     case types.LOAD_AUTHORS_SUCCESS:
       return fromJS(action.authors);

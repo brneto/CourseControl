@@ -1,8 +1,10 @@
 import { fromJS } from 'immutable';
 
-export default fromJS({
+const initialState = fromJS({
   authors: [],
   courses: [],
   ajaxCallsInProgress: 0,
   router: null,
 });
+
+export { initialState };

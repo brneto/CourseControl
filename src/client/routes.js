@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
-import HomePage from './home/HomePage';
-import AboutPage from './about/AboutPage';
-import CoursesPage from './course/CoursesPage';
-import ManageCoursePage from './course/ManageCoursePage';
-import AuthorsPage from './author/AuthorsPage';
-import ManageAuthorPage from './author/ManageAuthorPage';
+import HomePage from './components/home/HomePage';
+import AboutPage from './components/about/AboutPage';
+import CoursesPage from './components/course/CoursesPage';
+import ManageCoursePage from './components/course/ManageCoursePage';
+import AuthorsPage from './components/author/AuthorsPage';
+import ManageAuthorPage from './components/author/ManageAuthorPage';
 
 const history = createHistory();
 

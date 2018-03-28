@@ -6,8 +6,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { getStore } from './redux/store';
 import { loadCourses } from './redux/thunks/courseThunks';
 import { loadAuthors } from './redux/thunks/authorThunks';
-import App from './components/App';
 import { DevTools } from './redux/utils/DevTools';
+import App from './components/App';
 import './index.scss';
 
 const debug = process.env.NODE_ENV !== 'production';

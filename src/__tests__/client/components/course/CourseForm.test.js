@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-//import CourseForm from './CourseForm';
 import CourseForm from '../../../../client/components/course/CourseForm';
 
 function setup(saving) {

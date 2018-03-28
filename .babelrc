@@ -2,7 +2,8 @@
 	"presets": [
     ["env",  {
       "targets": { "node": "current" }
-    }]
+    }],
+    "react"
   ],
 	"plugins": [
 		"transform-decorators-legacy",

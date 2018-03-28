@@ -1,8 +1,9 @@
-import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import createHistory from 'history/createBrowserHistory';
 import { Provider } from 'react-redux';
-import { initialState, getStore } from './redux/store';
+import { ConnectedRouter } from 'react-router-redux';
+import { getStore } from './redux/store';
 import { loadCourses } from './redux/thunks/courseThunks';
 import { loadAuthors } from './redux/thunks/authorThunks';
 import App from './components/App';
@@ -10,7 +11,8 @@ import { DevTools } from './redux/utils/DevTools';
 import './index.scss';
 
 const debug = process.env.NODE_ENV !== 'production';
-const store = getStore(initialState);
+const history = createHistory();
+const store = getStore(history);
 
 store.dispatch(loadAuthors());
 store.dispatch(loadCourses());
@@ -18,7 +20,9 @@ store.dispatch(loadCourses());
 const app = (
   <div>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
     {debug && <DevTools store={store} />}
   </div>

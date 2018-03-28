@@ -1,14 +1,11 @@
 import React from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import CoursesPage from './components/course/CoursesPage';
 import ManageCoursePage from './components/course/ManageCoursePage';
 import AuthorsPage from './components/author/AuthorsPage';
 import ManageAuthorPage from './components/author/ManageAuthorPage';
-
-const history = createHistory();
 
 const NavLinks = () => (
   <ul className="navbar-nav">
@@ -55,4 +52,4 @@ const Routes = () => (
   </div>
 );
 
-export { history, NavLinks, Routes };
+export { NavLinks, Routes };

@@ -7,7 +7,7 @@
     "prestart": "babel-node src/server/server.prestart.js",
     "start": "npm-run-all --parallel lint:watch test:watch server:run",
     "server:run": "nodemon src/server/server.js",
-    "lint": "esw webpack.config.* src",
+    "lint": "esw src",
     "lint:watch": "yarn run lint --watch",
     "test": "jest",
     "test:watch": "TERM=dumb yarn test -o --watch",

@@ -7,13 +7,12 @@ import combinedReducer from '../reducers';
 import watchSagas from '../sagas';
 import { DevTools } from '../utils/DevTools';
 
-const debug = process.env.NODE_ENV !== 'production';
 const getStore = history => {
   const sagaMiddleware = createSagaMiddleware();
   const routerMiddleware = createRouterMiddleware(history);
   const enhancer = compose(
     applyMiddleware(thunkMiddleware, sagaMiddleware, routerMiddleware),
-    debug ? DevTools.instrument() : undefined
+    DevTools.instrument()
   );
 
   const store = createStore(combinedReducer, preloadedState, enhancer);

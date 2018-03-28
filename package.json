@@ -11,7 +11,8 @@
     "lint:watch": "yarn run lint --watch",
     "test": "jest",
     "test:watch": "TERM=dumb yarn test -o --watch",
-    "security": "nsp check"
+    "security": "nsp check",
+    "build": "NODE_ENV=production babel-node src/server/server.js"
   },
   "jest": {
     "rootDir": "src",

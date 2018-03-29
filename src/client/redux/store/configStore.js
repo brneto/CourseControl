@@ -3,8 +3,8 @@ import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 import { initialState as preloadedState } from './initialState';
-import combinedReducer from '../reducers';
-import watchSagas from '../sagas';
+import { reducers } from '../reducers';
+import { watchSagas } from '../sagas';
 import { DevTools } from '../utils/DevTools';
 
 const getStore = history => {
@@ -15,7 +15,7 @@ const getStore = history => {
     DevTools.instrument()
   );
 
-  const store = createStore(combinedReducer, preloadedState, enhancer);
+  const store = createStore(reducers, preloadedState, enhancer);
   sagaMiddleware.run(watchSagas);
 
   return store;

@@ -5,11 +5,11 @@ import authors from './authorReducer';
 import courses from './courseReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
-const combinedReducer = combineReducers({
+const reducers = combineReducers({
   authors,
   courses,
   ajaxCallsInProgress,
   router,
 });
 
-export default combinedReducer;
+export { reducers };

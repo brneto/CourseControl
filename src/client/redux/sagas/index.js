@@ -1,11 +1,12 @@
-
 import { all } from 'redux-saga/effects';
 import { watchCourses } from './courseSagas';
 import { watchAuthors } from './authorSagas';
 
-export default function* watchSagas() {
+function* watchSagas() {
   yield all([
     watchAuthors(),
     watchCourses(),
   ]);
 }
+
+export { watchSagas };

@@ -5,7 +5,7 @@ import path from 'path';
 
 const sassLoaderOptions = {
   importer: url =>
-    url.startsWith('@material') || url.startsWith('bootstrap')
+    url.startsWith('bootstrap') || url.startsWith('toastr')
       ? { file: path.resolve(`./node_modules/${url}`) }
       : { file: url }
 };

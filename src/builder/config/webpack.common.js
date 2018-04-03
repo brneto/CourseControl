@@ -33,7 +33,7 @@ export const commonConfig = {
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'initial',
-      automaticNameDelimiter: '-',
+      automaticNameDelimiter: '~',
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,

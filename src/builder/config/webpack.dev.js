@@ -1,16 +1,12 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-import {
-  commonConfig,
-  cssLoaderOptions,
-  postCssLoaderOptions,
-  sassLoaderOptions,
-  htmlPluginOptions
-} from './webpack.common.js';
+import { commonConfig, htmlPluginOptions } from './webpack.common.js';
 
 export const devConfig = merge(commonConfig, {
+  mode: 'development',
   devtool: 'inline-source-map',
   entry: {
     app: [
@@ -20,34 +16,20 @@ export const devConfig = merge(commonConfig, {
   output: {
     filename: '[name].[hash:8].bundle.js'
   },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: Object.assign(cssLoaderOptions, { sourceMap: true })
-          },
-          {
-            loader: 'postcss-loader',
-            options: postCssLoaderOptions
-          },
-          {
-            loader: 'sass-loader',
-            options: sassLoaderOptions
-          }
-        ]
-      }
-    ]
-  },
   plugins: [
     // Create HTML file that includes reference to bundled JS.
     new HtmlWebpackPlugin(htmlPluginOptions),
 
     // Add module names to factory functions so they appear in browser profiler.
-    new webpack.NamedModulesPlugin(),
+    //new webpack.NamedModulesPlugin(),
+
+    // Generate an external css file
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].bundle.css',
+      chunkFilename: '[name].chunk.css'
+    }),
 
     // This is necessary to emit hot updates (currently CSS only):
     new webpack.HotModuleReplacementPlugin(),

@@ -1,53 +1,54 @@
 import merge from 'webpack-merge';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
-//import ExtraneousFileCleanupPlugin from 'webpack-extraneous-file-cleanup-plugin';
-import {
-  commonConfig,
-  cssLoaderOptions,
-  postCssLoaderOptions,
-  sassLoaderOptions,
-  htmlPluginOptions
-} from './webpack.common.js';
+import { commonConfig, htmlPluginOptions } from './webpack.common.js';
 
 export const prodConfig = merge(commonConfig, {
+  mode: 'production',
   devtool: 'source-map',
   output: {
     filename: '[name].[chunkhash:8].bundle.js'
   },
-  module: {
-    rules: [
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: {
-            loader: 'style-loader',
-            options: { hmr: false }
+  optimization: {
+    minimizer: [
+      // Minify the code.
+      new UglifyJsPlugin({
+        // Use multi-process parallel running to improve the build speed
+        // Default number of concurrent runs: os.cpus().length - 1
+        parallel: true,
+        sourceMap: true,
+        uglifyOptions: {
+          ecma: 8,
+          warnings: true,
+          compress: {
+            warnings: true,
+            // Disabled because of an issue with Uglify breaking seemingly valid code:
+            // https://github.com/facebook/create-react-app/issues/2376
+            // Pending further investigation:
+            // https://github.com/mishoo/UglifyJS2/issues/2011
+            comparisons: false
           },
-          use: [
-            {
-              loader: 'css-loader',
-              options: Object.assign(cssLoaderOptions, { minimize: true })
-            },
-            {
-              loader: 'postcss-loader',
-              options: postCssLoaderOptions
-            },
-            {
-              loader: 'sass-loader',
-              options: sassLoaderOptions
-            }
-          ]
-        })
-      }
+          mangle: {
+            safari10: true
+          },
+          output: {
+            // Turned on because emoji and regex is not minified properly using default
+            // https://github.com/facebook/create-react-app/issues/2488
+            ascii_only: true
+          }
+        }
+      }),
+      new OptimizeCSSAssetsPlugin()
     ]
   },
   plugins: [
     // Remove/clean your build folder(s) before building
     new CleanWebpackPlugin(['dist']),
+
     // Create HTML file that includes reference to bundled JS.
     new HtmlWebpackPlugin(
       Object.assign(htmlPluginOptions, {
@@ -67,37 +68,11 @@ export const prodConfig = merge(commonConfig, {
     ),
 
     // Generate an external css file
-    new ExtractTextPlugin({
-      filename: '[name].[contenthash:8].css',
-      allChunks: true
-    }),
-
-    // Minify the code.
-    new UglifyJsPlugin({
-      // Use multi-process parallel running to improve the build speed
-      // Default number of concurrent runs: os.cpus().length - 1
-      parallel: true,
-      sourceMap: true,
-      uglifyOptions: {
-        ecma: 8,
-        warnings: true,
-        compress: {
-          warnings: true,
-          // Disabled because of an issue with Uglify breaking seemingly valid code:
-          // https://github.com/facebook/create-react-app/issues/2376
-          // Pending further investigation:
-          // https://github.com/mishoo/UglifyJS2/issues/2011
-          comparisons: false
-        },
-        mangle: {
-          safari10: true
-        },
-        output: {
-          // Turned on because emoji and regex is not minified properly using default
-          // https://github.com/facebook/create-react-app/issues/2488
-          ascii_only: true
-        }
-      }
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].[chunkhash:8].bundle.css',
+      chunkFilename: '[name].[chunkhash:8].chunk.css'
     }),
 
     // Generate a manifest file which contains a mapping of all asset filenames
@@ -107,11 +82,5 @@ export const prodConfig = merge(commonConfig, {
 
     // Generate an HTML5 Application Cache for a Webpack build manifest.appcache
     // new AppCachePlugin({ exclude: ['.htaccess'] }),
-
-    // Remove unused files due to multiple entry points and ExtractTextPlugin.
-    //new ExtraneousFileCleanupPlugin({
-    //  extensions: ['.js'],
-    //  manifestJsonName: 'asset-manifest.json'
-    //})
   ]
 });

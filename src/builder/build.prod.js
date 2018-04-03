@@ -29,12 +29,12 @@ compiler.run((err, stats) => {
 
   if (stats.hasErrors()) {
     console.log(chalk.red('Webpack generated the following errors:'));
-    return info.errors.map(err => console.error(chalk.red(err)));
+    info.errors.map(err => console.error(chalk.red(err)));
   }
 
   if (stats.hasWarnings()) {
     console.log(chalk.yellow('Webpack generated the following warnings:'));
-    return info.warnings.map(warn => console.warn(chalk.yellow(warn)));
+    info.warnings.map(warn => console.warn(chalk.yellow(warn)));
   }
 
   console.log('--------------------------------------------------------------');
@@ -73,4 +73,3 @@ const spaMiddleware = (req, res, next) => {
 };
 
 export default [prodMiddleware, spaMiddleware];
-//module.exports = [prodMiddleware, spaMiddleware];

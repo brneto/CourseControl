@@ -1,28 +1,17 @@
-import webpack from 'webpack';
-import WebpackMd5Hash from 'webpack-md5-hash';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import flexbugsfixes from 'postcss-flexbugs-fixes';
 import path from 'path';
 
-export const cssLoaderOptions = {
-  importLoaders: 2
-};
-
-export const postCssLoaderOptions = {
-  // https://webpack.js.org/guides/migrating/#complex-options
-  //ident: 'postcss',
-  plugins: [flexbugsfixes, autoprefixer({ flexbox: 'no-2009' })]
-};
-
-export const sassLoaderOptions = {
+const sassLoaderOptions = {
   importer: url =>
-    url.startsWith('bootstrap') || url.startsWith('toastr')
+    url.startsWith('@material') || url.startsWith('bootstrap')
       ? { file: path.resolve(`./node_modules/${url}`) }
       : { file: url }
 };
 
 export const htmlPluginOptions = {
-  title: 'react-dev-env',
+  title: 'CopyDesk',
   filename: 'index.html',
   template: './public/index.html',
   inject: true,
@@ -40,6 +29,20 @@ export const commonConfig = {
     chunkFilename: '[name].[chunkhash:8].chunk.js',
     path: path.resolve('dist'),
     publicPath: '/'
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'initial',
+      automaticNameDelimiter: '-',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true
+        }
+      }
+    }
   },
   module: {
     strictExportPresence: true,
@@ -97,10 +100,33 @@ export const commonConfig = {
             options: {
               limit: 10000,
               fallback: 'file-loader',
-              // This 'name' option is passed through into 'file-loader' when
-              // fallback loader is triggered.
               name: '[name].[hash:8].[ext]'
             }
+          }
+        ]
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          { loader: 'css-hot-loader' },
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 2,  sourceMap: true }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              //ident: 'postcss',
+              plugins: [
+                flexbugsfixes,
+                autoprefixer({ flexbox: 'no-2009' })
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: sassLoaderOptions
           }
         ]
       }
@@ -110,27 +136,10 @@ export const commonConfig = {
     ]
   },
   plugins: [
-    // Use CommonsChunkPlugin to extract third-party
-    // dependencies into an entirely new chunk.
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: m => m.context && m.context.includes('node_modules')
-    }),
-
-    // Extract the webpack bootstrap logic into a separate file
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      minChunks: Infinity
-    }),
-
-    // Hash the files using MD5 so that their names change when the content changes.
-    new WebpackMd5Hash(),
-
-    // Makes some environment variables available to the JS code, for example:
-    // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
+    // Default used by Webpack 4
+    // new webpack.DefinePlugin({
+    //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    // })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

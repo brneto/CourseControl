@@ -13,11 +13,7 @@ import './index.scss';
 const debug = process.env.NODE_ENV !== 'production';
 const history = createHistory();
 const store = getStore(history);
-
-store.dispatch(loadAuthors());
-store.dispatch(loadCourses());
-
-const app = (
+const ReduxApp = () => (
   <div>
     <Provider store={store}>
       <ConnectedRouter history={history}>
@@ -28,4 +24,6 @@ const app = (
   </div>
 );
 
-ReactDOM.render(app, document.getElementById('root'));
+store.dispatch(loadAuthors());
+store.dispatch(loadCourses());
+ReactDOM.render(<ReduxApp/>, document.getElementById('root'));

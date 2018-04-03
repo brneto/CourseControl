@@ -5,6 +5,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import { commonConfig, htmlPluginOptions } from './webpack.common.js';
 
+const filePrefix = '[name].bundle';
+const chunkPrefix = '[name].chunk';
 export const devConfig = merge(commonConfig, {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -14,7 +16,8 @@ export const devConfig = merge(commonConfig, {
     ]
   },
   output: {
-    filename: '[name].[hash:8].bundle.js'
+    filename: `${filePrefix}.js`,
+    chunkFilename: `${chunkPrefix}.js`
   },
   plugins: [
     // Create HTML file that includes reference to bundled JS.
@@ -27,8 +30,8 @@ export const devConfig = merge(commonConfig, {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].bundle.css',
-      chunkFilename: '[name].chunk.css'
+      filename: `${filePrefix}.css`,
+      chunkFilename: `${chunkPrefix}.css`
     }),
 
     // This is necessary to emit hot updates (currently CSS only):

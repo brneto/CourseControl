@@ -26,7 +26,6 @@ export const commonConfig = {
     app: ['babel-polyfill', './src/client/index.js']
   },
   output: {
-    chunkFilename: '[name].[chunkhash:8].chunk.js',
     path: path.resolve('dist'),
     publicPath: '/'
   },

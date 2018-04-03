@@ -7,11 +7,14 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import { commonConfig, htmlPluginOptions } from './webpack.common.js';
 
+const filePrefix = '[name].[chunkhash:8].bundle';
+const chunkPrefix = '[name].[chunkhash:8].chunk';
 export const prodConfig = merge(commonConfig, {
   mode: 'production',
   devtool: 'source-map',
   output: {
-    filename: '[name].[chunkhash:8].bundle.js'
+    filename: `${filePrefix}.js`,
+    chunkFilename: `${chunkPrefix}.js`
   },
   optimization: {
     minimizer: [
@@ -71,14 +74,14 @@ export const prodConfig = merge(commonConfig, {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: '[name].[chunkhash:8].bundle.css',
-      chunkFilename: '[name].[chunkhash:8].chunk.css'
+      filename: `${filePrefix}.css`,
+      chunkFilename: `${chunkPrefix}.css`
     }),
 
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
-    new ManifestPlugin({ fileName: 'asset-manifest.json' }),
+    new ManifestPlugin({ fileName: 'asset-manifest.json' })
 
     // Generate an HTML5 Application Cache for a Webpack build manifest.appcache
     // new AppCachePlugin({ exclude: ['.htaccess'] }),

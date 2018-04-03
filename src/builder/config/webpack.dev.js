@@ -20,7 +20,7 @@ export const devConfig = merge(commonConfig, {
     // Create HTML file that includes reference to bundled JS.
     new HtmlWebpackPlugin(htmlPluginOptions),
 
-    // Add module names to factory functions so they appear in browser profiler.
+    // Default used by Webpack 4
     //new webpack.NamedModulesPlugin(),
 
     // Generate an external css file

@@ -23,7 +23,7 @@ export const commonConfig = {
   target: 'web',
   bail: true,
   entry: {
-    app: ['babel-polyfill', './src/client/index.js']
+    app: ['@babel/polyfill', './src/client/index.js']
   },
   output: {
     path: path.resolve('dist'),
@@ -66,23 +66,23 @@ export const commonConfig = {
               cacheDirectory: true,
               babelrc: false,
               presets: [
-                ['env',  {
+                ['@babel/preset-env',  {
                   targets: { uglify: true },
                   modules: false,
-                  useBuiltIns: true,
+                  useBuiltIns: 'usage',
                   debug: true
                 }],
-                'react'
+                '@babel/preset-react'
               ],
               plugins: [
                 'react-hot-loader/babel',
-                'transform-decorators-legacy',
-                'transform-class-properties',
-                'transform-object-rest-spread',
-                'transform-function-bind',
+                '@babel/plugin-proposal-decorators',
+                '@babel/plugin-proposal-class-properties',
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-proposal-function-bind',
                 // It's required Babel Syntax Dynamic Import Plugin to
                 // Webpack Dynamic Imports work.
-                'syntax-dynamic-import'
+                '@babel/plugin-syntax-dynamic-import'
               ]
             }
           },

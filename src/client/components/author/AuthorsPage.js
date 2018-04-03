@@ -22,14 +22,14 @@ class AuthorsPage extends Component {
   render() {
     const { authors, actions } = this.props;
     return (
-      <div>
+      <>
         <h1>Authors</h1>
         <button
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
           onClick={actions.goToAddAuthor}>Add Author</button>
         <AuthorsList authors={authors} />
-      </div>
+      </>
     );
   }
 }

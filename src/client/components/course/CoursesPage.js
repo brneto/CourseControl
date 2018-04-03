@@ -27,14 +27,14 @@ class CoursesPage extends Component {
   render() {
     const { courses, actions } = this.props;
     return (
-      <div>
+      <>
         <h1>Courses</h1>
         <button
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
           onClick={actions.goToAddCourse}>Add Course</button>
         <CoursesList courses={courses} />
-      </div>
+      </>
     );
   }
 }

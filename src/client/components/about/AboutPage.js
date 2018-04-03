@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AboutPage = () => (
-  <div>
+  <>
     <h1>About</h1>
     <div className="card w-50">
       <div className="card-body">
@@ -29,7 +29,7 @@ const AboutPage = () => (
         </ul>
       </div>
     </div>
-  </div>
+  </>
 );
 
 export default AboutPage;

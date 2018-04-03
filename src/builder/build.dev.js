@@ -45,4 +45,3 @@ const spaMiddleware = (req, res, next) => {
 };
 
 export default [devMiddleware, hotMiddleware, spaMiddleware];
-//module.exports = [devMiddleware, hotMiddleware, spaMiddleware];

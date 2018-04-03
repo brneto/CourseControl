@@ -14,14 +14,14 @@ const debug = process.env.NODE_ENV !== 'production';
 const history = createHistory();
 const store = getStore(history);
 const ReduxApp = () => (
-  <div>
+  <>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <App />
       </ConnectedRouter>
     </Provider>
     {debug && <DevTools store={store} />}
-  </div>
+  </>
 );
 
 store.dispatch(loadAuthors());

@@ -11,7 +11,7 @@ const sassLoaderOptions = {
 };
 
 export const htmlPluginOptions = {
-  title: 'CopyDesk',
+  title: 'CourseAdmin',
   filename: 'index.html',
   template: './public/index.html',
   inject: true,

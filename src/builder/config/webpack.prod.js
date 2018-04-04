@@ -1,21 +1,14 @@
 import merge from 'webpack-merge';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import ManifestPlugin from 'webpack-manifest-plugin';
 import { commonConfig, htmlPluginOptions } from './webpack.common.js';
 
-const filePrefix = '[name].[chunkhash:8].bundle';
-const chunkPrefix = '[name].[chunkhash:8].chunk';
 export const prodConfig = merge(commonConfig, {
   mode: 'production',
   devtool: 'source-map',
-  output: {
-    filename: `${filePrefix}.js`,
-    chunkFilename: `${chunkPrefix}.js`
-  },
   optimization: {
     minimizer: [
       // Minify the code.
@@ -69,14 +62,6 @@ export const prodConfig = merge(commonConfig, {
         }
       })
     ),
-
-    // Generate an external css file
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: `${filePrefix}.css`,
-      chunkFilename: `${chunkPrefix}.css`
-    }),
 
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without

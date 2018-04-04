@@ -3,9 +3,14 @@ import autoprefixer from 'autoprefixer';
 import flexbugsfixes from 'postcss-flexbugs-fixes';
 import path from 'path';
 
+const debug = process.env.NODE_ENV !== 'production';
+const filePrefix = debug ? '[name].bundle' : '[name].[chunkhash:8].bundle';
+const chunkPrefix = debug ? '[name].chunk' : '[name].[chunkhash:8].chunk';
+const imgFilename = debug ? '[name].[ext]' : '[name].[hash:8].[ext]';
+
 const sassLoaderOptions = {
   importer: url =>
-    url.startsWith('bootstrap') || url.startsWith('toastr')
+  url.startsWith('bootstrap') || url.startsWith('toastr')
       ? { file: path.resolve(`./node_modules/${url}`) }
       : { file: url }
 };
@@ -18,7 +23,6 @@ export const htmlPluginOptions = {
   favicon: './public/favicon.ico',
   xhtml: true
 };
-
 export const commonConfig = {
   target: 'web',
   bail: true,
@@ -26,6 +30,8 @@ export const commonConfig = {
     app: ['@babel/polyfill', './src/client/index.js']
   },
   output: {
+    filename: `${filePrefix}.js`,
+    chunkFilename: `${chunkPrefix}.js`,
     path: path.resolve('dist'),
     publicPath: '/'
   },
@@ -99,7 +105,7 @@ export const commonConfig = {
             options: {
               limit: 10000,
               fallback: 'file-loader',
-              name: '[name].[hash:8].[ext]'
+              name: imgFilename
             }
           }
         ]
@@ -135,6 +141,14 @@ export const commonConfig = {
     ]
   },
   plugins: [
+    // Generate an external css file
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: `${filePrefix}.css`,
+      chunkFilename: `${chunkPrefix}.css`
+    })
+
     // Default used by Webpack 4
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)

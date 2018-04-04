@@ -1,5 +1,3 @@
-//import 'dotenv/config';
-//import '@babel/polyfill';
 import compression from 'compression';
 import express from 'express';
 import morgan from 'morgan';

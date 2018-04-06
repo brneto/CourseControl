@@ -10,7 +10,7 @@ const imgFilename = debug ? '[name].[ext]' : '[name].[hash:8].[ext]';
 
 const sassLoaderOptions = {
   importer: url =>
-  url.startsWith('bootstrap') || url.startsWith('toastr')
+    url.startsWith('bootstrap') || url.startsWith('toastr')
       ? { file: path.resolve(`./node_modules/${url}`) }
       : { file: url }
 };

@@ -25,17 +25,17 @@ compiler.run((err, stats) => {
     return;
   }
 
-  const info = stats.toJson();
+  // const info = stats.toJson();
 
-  if (stats.hasErrors()) {
-    console.log(chalk.red('Webpack generated the following errors:'));
-    info.errors.map(err => console.error(chalk.red(err)));
-  }
+  // if (stats.hasErrors()) {
+  //   console.log(chalk.red('Webpack generated the following errors:'));
+  //   info.errors.map(err => console.error(chalk.red(err)));
+  // }
 
-  if (stats.hasWarnings()) {
-    console.log(chalk.yellow('Webpack generated the following warnings:'));
-    info.warnings.map(warn => console.warn(chalk.yellow(warn)));
-  }
+  // if (stats.hasWarnings()) {
+  //   console.log(chalk.yellow('Webpack generated the following warnings:'));
+  //   info.warnings.map(warn => console.warn(chalk.yellow(warn)));
+  // }
 
   console.log('--------------------------------------------------------------');
   console.log(stats.toString({ colors: true }));

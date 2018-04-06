@@ -72,7 +72,7 @@ export const commonConfig = {
               babelrc: false,
               presets: [
                 ['@babel/preset-env',  {
-                  targets: { uglify: true },
+                  forceAllTransforms: true,
                   modules: false,
                   useBuiltIns: 'usage',
                   debug: true

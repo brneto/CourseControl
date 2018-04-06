@@ -10,7 +10,7 @@ const AboutPage = () => (
         </div>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">Nodejs</li>
-          <li className="list-group-item">nodemon</li>
+          <li className="list-group-item">pm2</li>
           <li className="list-group-item">Babel</li>
           <li className="list-group-item">Express</li>
           <li className="list-group-item">Webpack</li>

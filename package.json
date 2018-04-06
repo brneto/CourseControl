@@ -8,7 +8,7 @@
     "start": "pm2 start process.json",
     "poststart": "run-p lint:watch test:watch app:watch",
     "stop": "pm2 stop process.json",
-    "poststop": "pm2 flush && pm2 delete all",
+    "poststop": "pm2 flush || pm2 delete all",
     "plist": "pm2 l",
     "lint": "esw src",
     "lint:watch": "yarn lint --watch",

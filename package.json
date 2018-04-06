@@ -14,7 +14,7 @@
     "lint:watch": "yarn lint --watch",
     "test": "jest",
     "test:watch": "TERM=dumb yarn test -o --watch",
-    "prebuild": "yarn security",
+    "prebuild": "yarn poststop && yarn security",
     "build": "pm2 start process.json --env production",
     "postbuild": "yarn app:watch",
     "security": "nsp check",

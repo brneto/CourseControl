@@ -17,7 +17,7 @@ export function* watchCourses() {
   ]);
 }
 
-export function* workLoadCourses() {
+function* workLoadCourses() {
   try {
     const courses = yield call(courseApi.getAllCourses);
     yield put(loadCoursesSuccess(courses));
@@ -26,7 +26,7 @@ export function* workLoadCourses() {
   }
 }
 
-export function* workSaveCourse(action) {
+function* workSaveCourse(action) {
   try {
     const { course } = action;
     const savedCourse = yield call(courseApi.saveCourse, course);
@@ -39,7 +39,7 @@ export function* workSaveCourse(action) {
   }
 }
 
-export function* workDeleteCourse(action) {
+function* workDeleteCourse(action) {
   try {
     const deletedCourseId = yield call(courseApi.deleteCourse, action.course.id);
     yield put(deleteCourseSuccess(deletedCourseId));

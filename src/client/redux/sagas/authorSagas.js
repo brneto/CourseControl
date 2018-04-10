@@ -17,7 +17,7 @@ export function* watchAuthors() {
   ]);
 }
 
-export function* workLoadAuthors() {
+function* workLoadAuthors() {
   try {
     const authors = yield call(authorApi.getAllAuthors);
     yield put(loadAuthorsSuccess(authors));
@@ -26,7 +26,7 @@ export function* workLoadAuthors() {
   }
 }
 
-export function* workSaveAuthor(action) {
+function* workSaveAuthor(action) {
   try {
     const { author } = action;
     const savedAuthor = yield call(authorApi.saveAuthor, author);
@@ -39,7 +39,7 @@ export function* workSaveAuthor(action) {
   }
 }
 
-export function* workDeleteAuthor(action) {
+function* workDeleteAuthor(action) {
   try {
     const { author } = action;
     const deletedAuthorId = yield call(authorApi.deleteAuthor, author.value);

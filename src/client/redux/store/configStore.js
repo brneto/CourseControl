@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 import { initialState as preloadedState } from './initialState';
 import { reducers } from '../reducers';
 import { watchSagas } from '../sagas';

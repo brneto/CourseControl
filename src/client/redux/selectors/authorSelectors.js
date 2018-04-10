@@ -12,7 +12,7 @@ const authorsFormattedSelector = createSelector(
   authors => authors.map(author => authorFormatter(author)).toJS()
 );
 
-const authorSelector = (state) => {
+const authorSelector = state => {
   const matchSelector = createMatchSelector('/author/:id');
   const match = matchSelector(state.toJS());
 

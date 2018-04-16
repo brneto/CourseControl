@@ -29,12 +29,11 @@ class ManageAuthorPage extends Component {
     error: {},
   };
 
-  componentWillReceiveProps = nextProps => {
+  static getDerivedStateFromProps = nextProps => {
     const { author: oldAuthor } = this.props;
     const { author } = nextProps;
 
-    if(oldAuthor.id !== author.id)
-      this.setState({ author });
+    return oldAuthor.id !== author.id ? { author } : null;
   };
 
   handleChange = event => {

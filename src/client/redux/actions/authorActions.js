@@ -4,7 +4,6 @@ import { createActions } from 'redux-actions';
 export const types = keyMirror({
   LOAD_AUTHORS_REQUEST: 1,
   LOAD_AUTHORS_SUCCESS: 1,
-  LOAD_AUTHORS_FAIL: 1,
 
   SAVE_AUTHOR_REQUEST: 1,
   CREATE_AUTHOR_SUCCESS: 1,

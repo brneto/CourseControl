@@ -1,19 +1,23 @@
 import { takeEvery, call, put, all } from 'redux-saga/effects';
 import authorApi from '../../api/mockAuthorApi';
 import {
-  types,
+  loadAuthorsRequest,
   loadAuthorsSuccess,
+
+  saveAuthorRequest,
   createAuthorSuccess,
   updateAuthorSuccess,
+
+  deleteAuthorRequest,
   deleteAuthorSuccess
 } from '../actions/authorActions';
 import { saveAuthorWarn, deleteAuthorWarn } from '../thunks/authorThunks';
 
 export function* watchAuthors() {
   yield all([
-    takeEvery(types.LOAD_AUTHORS_REQUEST, workLoadAuthors),
-    takeEvery(types.SAVE_AUTHOR_REQUEST, workSaveAuthor),
-    takeEvery(types.DELETE_AUTHOR_REQUEST, workDeleteAuthor),
+    takeEvery(loadAuthorsRequest, workLoadAuthors),
+    takeEvery(saveAuthorRequest, workSaveAuthor),
+    takeEvery(deleteAuthorRequest, workDeleteAuthor),
   ]);
 }
 

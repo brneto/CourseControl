@@ -1,19 +1,23 @@
 import { all, takeEvery, call, put } from 'redux-saga/effects';
 import courseApi from '../../api/mockCourseApi';
 import {
-  types,
+  loadCoursesRequest,
   loadCoursesSuccess,
+
+  saveCourseRequest,
   createCourseSuccess,
   updateCourseSuccess,
-  deleteCourseSuccess,
+
+  deleteCourseRequest,
+  deleteCourseSuccess
 } from '../actions/courseActions';
 import { saveCourseWarn, deleteCourseWarn } from '../thunks/courseThunks';
 
 export function* watchCourses() {
   yield all([
-    takeEvery(types.LOAD_COURSES_REQUEST, workLoadCourses),
-    takeEvery(types.SAVE_COURSE_REQUEST, workSaveCourse),
-    takeEvery(types.DELETE_COURSE_REQUEST, workDeleteCourse),
+    takeEvery(loadCoursesRequest, workLoadCourses),
+    takeEvery(saveCourseRequest, workSaveCourse),
+    takeEvery(deleteCourseRequest, workDeleteCourse),
   ]);
 }
 

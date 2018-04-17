@@ -1,18 +1,20 @@
-import { types } from '../actions/ajaxStatusActions';
+import { ajaxCallBegin, ajaxCallEnd } from '../actions/ajaxStatusActions';
+import { handleActions } from 'redux-actions';
 
-const ajaxStatusReducer = (state = 0, action) => {
-  if (
-    action.type === types.AJAX_CALL_BEGIN ||
-    action.type.endsWith('_REQUEST')
-  ) {
-    return ++state;
-  } else if (
-    action.type === types.AJAX_CALL_END ||
-    action.type.endsWith('_SUCCESS')
-  ) {
-    return --state;
+const defaultState = 0;
+
+const ajaxReducer = handleActions({
+  [ajaxCallBegin]: state => ++state,
+  [ajaxCallEnd]: state => --state,
+}, defaultState);
+
+const ajaxStatusReducer = (state, action) => {
+  if (action.type.endsWith('_REQUEST')) {
+    return ajaxReducer(state, ajaxCallBegin());
+  } else if (action.type.endsWith('_SUCCESS')) {
+    return ajaxReducer(state, ajaxCallEnd());
   }
-  return state;
+  return ajaxReducer(state, action);
 };
 
 export default ajaxStatusReducer;

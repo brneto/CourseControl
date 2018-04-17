@@ -28,7 +28,7 @@ function* workLoadCourses() {
 
 function* workSaveCourse(action) {
   try {
-    const { course } = action;
+    const { course } = action.payload;
     const savedCourse = yield call(courseApi.saveCourse, course);
     yield course.id ?
       put(updateCourseSuccess(savedCourse)) :
@@ -41,7 +41,8 @@ function* workSaveCourse(action) {
 
 function* workDeleteCourse(action) {
   try {
-    const deletedCourseId = yield call(courseApi.deleteCourse, action.course.id);
+    const { course } = action.payload;
+    const deletedCourseId = yield call(courseApi.deleteCourse, course.id);
     yield put(deleteCourseSuccess(deletedCourseId));
     yield put(deleteCourseWarn());
   } catch(e) {

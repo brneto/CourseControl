@@ -5,9 +5,7 @@ describe('AJAX Status Actions', () => {
   describe('ajaxCallBegin', () => {
     it('Should create a AJAX_CALL_BEGIN action', () => {
       //arrange
-      const expectedAction = {
-        type: ajaxStatusActions.types.AJAX_CALL_BEGIN,
-      };
+      const expectedAction = { type: 'AJAX_CALL_BEGIN' };
 
       //act
       const action = ajaxStatusActions.ajaxCallBegin();
@@ -20,9 +18,7 @@ describe('AJAX Status Actions', () => {
   describe('ajaxCallEnd', () => {
     it('Should create a AJAX_CALL_END action', () => {
       //arrange
-      const expectedAction = {
-        type: ajaxStatusActions.types.AJAX_CALL_END,
-      };
+      const expectedAction = { type: 'AJAX_CALL_END' };
 
       //act
       const action = ajaxStatusActions.ajaxCallEnd();

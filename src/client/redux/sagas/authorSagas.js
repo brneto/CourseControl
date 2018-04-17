@@ -28,7 +28,7 @@ function* workLoadAuthors() {
 
 function* workSaveAuthor(action) {
   try {
-    const { author } = action;
+    const { author } = action.payload;
     const savedAuthor = yield call(authorApi.saveAuthor, author);
     yield author.id ?
       put(updateAuthorSuccess(savedAuthor)) :
@@ -41,7 +41,7 @@ function* workSaveAuthor(action) {
 
 function* workDeleteAuthor(action) {
   try {
-    const { author } = action;
+    const { author } = action.payload;
     const deletedAuthorId = yield call(authorApi.deleteAuthor, author.value);
     yield put(deleteAuthorSuccess(deletedAuthorId));
     yield put(deleteAuthorWarn());

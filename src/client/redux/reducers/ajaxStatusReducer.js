@@ -2,7 +2,6 @@ import { ajaxCallBegin, ajaxCallEnd } from '../actions/ajaxStatusActions';
 import { handleActions } from 'redux-actions';
 
 const defaultState = 0;
-
 const ajaxReducer = handleActions({
   [ajaxCallBegin]: state => ++state,
   [ajaxCallEnd]: state => --state,

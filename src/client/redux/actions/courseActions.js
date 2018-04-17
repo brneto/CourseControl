@@ -1,4 +1,5 @@
 import keyMirror from 'fbjs/lib/keyMirror';
+import { createActions } from 'redux-actions';
 
 export const types = keyMirror({
   LOAD_COURSES_REQUEST: 1,
@@ -12,23 +13,24 @@ export const types = keyMirror({
   DELETE_COURSE_SUCCESS: 1,
 });
 
-export const loadCoursesRequest =
-  () => ({ type: types.LOAD_COURSES_REQUEST });
+export const {
+  loadCoursesRequest,
+  loadCoursesSuccess,
 
-export const loadCoursesSuccess =
-  courses => ({ type: types.LOAD_COURSES_SUCCESS, courses });
+  saveCourseRequest,
+  createCourseSuccess,
+  updateCourseSuccess,
 
-export const saveCourseRequest =
-  course => ({ type: types.SAVE_COURSE_REQUEST, course });
+  deleteCourseRequest,
+  deleteCourseSuccess
+} = createActions({
+  [types.LOAD_COURSES_REQUEST]: null,
+  [types.LOAD_COURSES_SUCCESS]: courses => ({ courses }),
 
-export const createCourseSuccess =
-  course => ({ type: types.CREATE_COURSE_SUCCESS, course });
+  [types.SAVE_COURSE_REQUEST]: course => ({ course }),
+  [types.CREATE_COURSE_SUCCESS]: course => ({ course }),
+  [types.UPDATE_COURSE_SUCCESS]: course => ({ course }),
 
-export const updateCourseSuccess =
-  course => ({ type: types.UPDATE_COURSE_SUCCESS, course });
-
-export const deleteCourseRequest =
-  course => ({ type: types.DELETE_COURSE_REQUEST, course });
-
-export const deleteCourseSuccess =
-  courseId => ({ type: types.DELETE_COURSE_SUCCESS, courseId });
+  [types.DELETE_COURSE_REQUEST]: course => ({ course }),
+  [types.DELETE_COURSE_SUCCESS]: courseId => ({ courseId })
+});

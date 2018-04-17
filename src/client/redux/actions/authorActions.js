@@ -1,4 +1,5 @@
 import keyMirror from 'fbjs/lib/keyMirror';
+import { createActions } from 'redux-actions';
 
 export const types = keyMirror({
   LOAD_AUTHORS_REQUEST: 1,
@@ -13,23 +14,24 @@ export const types = keyMirror({
   DELETE_AUTHOR_SUCCESS: 1,
 });
 
-export const loadAuthorsRequest =
-  () => ({ type: types.LOAD_AUTHORS_REQUEST });
+export const {
+  loadAuthorsRequest,
+  loadAuthorsSuccess,
 
-export const loadAuthorsSuccess =
-  authors => ({ type: types.LOAD_AUTHORS_SUCCESS, authors });
+  saveAuthorRequest,
+  createAuthorSuccess,
+  updateAuthorSuccess,
 
-export const saveAuthorRequest =
-  author => ({ type: types.SAVE_AUTHOR_REQUEST, author });
+  deleteAuthorRequest,
+  deleteAuthorSuccess
+} = createActions({
+  [types.LOAD_AUTHORS_REQUEST]: null,
+  [types.LOAD_AUTHORS_SUCCESS]: authors => ({ authors }),
 
-export const createAuthorSuccess =
-  author => ({ type: types.CREATE_AUTHOR_SUCCESS, author });
+  [types.SAVE_AUTHOR_REQUEST]: author => ({ author }),
+  [types.CREATE_AUTHOR_SUCCESS]: author => ({ author }),
+  [types.UPDATE_AUTHOR_SUCCESS]: author => ({ author }),
 
-export const updateAuthorSuccess =
-  author => ({ type: types.UPDATE_AUTHOR_SUCCESS, author });
-
-export const deleteAuthorRequest =
-  author => ({ type: types.DELETE_AUTHOR_REQUEST, author });
-
-export const deleteAuthorSuccess =
-  authorId => ({ type: types.DELETE_AUTHOR_SUCCESS, authorId });
+  [types.DELETE_AUTHOR_REQUEST]: author => ({ author }),
+  [types.DELETE_AUTHOR_SUCCESS]: authorId => ({ authorId })
+});

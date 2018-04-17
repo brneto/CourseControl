@@ -19,6 +19,7 @@ const AboutPage = () => (
           <li className="list-group-item">React Router</li>
           <li className="list-group-item">Immutable</li>
           <li className="list-group-item">Redux</li>
+          <li className="list-group-item">Redux Actions</li>
           <li className="list-group-item">Redux Thunk</li>
           <li className="list-group-item">Redux Saga</li>
           <li className="list-group-item">ReSelect</li>

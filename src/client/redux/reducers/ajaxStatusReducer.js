@@ -1,8 +1,8 @@
+import { handleActions, combineActions } from 'redux-actions';
 import {
   ajaxCallIncrement,
   ajaxCallDecrement
 } from '../actions/ajaxStatusActions';
-import { handleActions, combineActions } from 'redux-actions';
 
 const defaultState = 0;
 const ajaxReducer = handleActions({

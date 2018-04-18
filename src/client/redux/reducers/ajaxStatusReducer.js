@@ -11,9 +11,10 @@ const ajaxReducer = handleActions({
   }, defaultState);
 
 const ajaxStatusReducer = (state, action) => {
-  if (action.type.endsWith('_REQUEST')) {
+  const { type } = action;
+  if (type.endsWith('_REQUEST')) {
     return ajaxReducer(state, ajaxCallIncrement());
-  } else if (action.type.endsWith('_SUCCESS')) {
+  } else if (type.endsWith('_SUCCESS')) {
     return ajaxReducer(state, ajaxCallDecrement());
   }
   return ajaxReducer(state, action);

@@ -1,5 +1,5 @@
-import { types } from '../../../../client/redux/actions/courseActions';
-import  * as courseThunks from '../../../../client/redux/thunks/courseThunks';
+import * as courseActions from '../../../../client/redux/actions/courseActions';
+import * as courseThunks from '../../../../client/redux/thunks/courseThunks';
 
 import thunk from 'redux-thunk';
 import nock from 'nock';
@@ -13,24 +13,25 @@ describe('Course Thunks', () => {
     nock.cleanAll();
   });
 
-  it('should create BEGIN_AJAX_CALL and LOAD_COURSES_SUCCESS when loading courses', async done => {
+  it('should create LOAD_COURSES_REQUEST when loading courses', done => {
     // Here's an example call to nock.
     // nock('http://example.com/')
     //  .get('/courses')
     //  .reply(200, { body: { course: [{ id: 1, firstName: 'Cory', lastName: 'House' }] }});
 
     const expectedAction = [
-      { type: types.AJAX_CALL_BEGIN },
-      { type: types.LOAD_COURSES_SUCCESS, body: { course: [{ id: 1, firstName: 'Cory', lastName: 'House' }] } }
+      {
+        type: courseActions.loadCoursesRequest.toString(),
+        body: { course: [{ id: 1, firstName: 'Cory', lastName: 'House' }] }
+      }
     ];
     const store = mockstore({ courses: [] }, expectedAction);
-
-    await store.dispatch(courseThunks.loadCourses());
+    store.dispatch(courseThunks.loadCourses());
 
     const actions = store.getActions();
-    //expect(actions[0].type).toEqual(types.AJAX_CALL_BEGIN);
-    //expect(actions[1].type).toEqual(types.LOAD_COURSES_SUCCESS);
-    expect(actions[0].type).toEqual(types.LOAD_COURSES_REQUEST);
+    expect(actions[0].type).toEqual(
+      courseActions.loadCoursesRequest.toString()
+    );
     done();
   });
 });

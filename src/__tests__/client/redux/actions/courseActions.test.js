@@ -7,7 +7,7 @@ describe('Course Actions', () => {
       //arrange
       const course = { id: 'clean-code', title: 'Clean Code' };
       const expectedAction = {
-        type: courseActions.createCourseSuccess.toString(),
+        type: 'CREATE_COURSE_SUCCESS',
         payload: { course },
       };
 

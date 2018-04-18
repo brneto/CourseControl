@@ -3,12 +3,15 @@ import  * as ajaxStatusActions from '../../../../client/redux/actions/ajaxStatus
 // Test sync action
 describe('AJAX Status Actions', () => {
   describe('ajaxCallBegin', () => {
-    it('Should create a AJAX_CALL_BEGIN action', () => {
+    it('Should create a AJAX_CALL_INCREMENT action', () => {
       //arrange
-      const expectedAction = { type: 'AJAX_CALL_BEGIN' };
+      const expectedAction = {
+        type: 'AJAX_CALL_INCREMENT',
+        payload: 1,
+      };
 
       //act
-      const action = ajaxStatusActions.ajaxCallBegin();
+      const action = ajaxStatusActions.ajaxCallIncrement();
 
       //assert
       expect(action).toEqual(expectedAction);
@@ -16,12 +19,15 @@ describe('AJAX Status Actions', () => {
   });
 
   describe('ajaxCallEnd', () => {
-    it('Should create a AJAX_CALL_END action', () => {
+    it('Should create a AJAX_CALL_DECREMENT action', () => {
       //arrange
-      const expectedAction = { type: 'AJAX_CALL_END' };
+      const expectedAction = {
+        type: 'AJAX_CALL_DECREMENT',
+        payload: -1,
+      };
 
       //act
-      const action = ajaxStatusActions.ajaxCallEnd();
+      const action = ajaxStatusActions.ajaxCallDecrement();
 
       //assert
       expect(action).toEqual(expectedAction);

@@ -1,4 +1,6 @@
-import { createAction } from 'redux-actions';
+import { createActions } from 'redux-actions';
 
-export const ajaxCallBegin = createAction('AJAX_CALL_BEGIN');
-export const ajaxCallEnd = createAction('AJAX_CALL_END');
+export const { ajaxCallIncrement, ajaxCallDecrement } = createActions({
+  AJAX_CALL_INCREMENT: amount => amount && amount > 0 ? amount : 1,
+  AJAX_CALL_DECREMENT: amount => amount && amount < 0 ? amount : -1,
+});

@@ -1,17 +1,20 @@
-import { ajaxCallBegin, ajaxCallEnd } from '../actions/ajaxStatusActions';
-import { handleActions } from 'redux-actions';
+import {
+  ajaxCallIncrement,
+  ajaxCallDecrement
+} from '../actions/ajaxStatusActions';
+import { handleActions, combineActions } from 'redux-actions';
 
 const defaultState = 0;
 const ajaxReducer = handleActions({
-  [ajaxCallBegin]: state => ++state,
-  [ajaxCallEnd]: state => --state,
-}, defaultState);
+    [combineActions(ajaxCallIncrement, ajaxCallDecrement)]:
+      (state, action) => state + action.payload,
+  }, defaultState);
 
 const ajaxStatusReducer = (state, action) => {
   if (action.type.endsWith('_REQUEST')) {
-    return ajaxReducer(state, ajaxCallBegin());
+    return ajaxReducer(state, ajaxCallIncrement());
   } else if (action.type.endsWith('_SUCCESS')) {
-    return ajaxReducer(state, ajaxCallEnd());
+    return ajaxReducer(state, ajaxCallDecrement());
   }
   return ajaxReducer(state, action);
 };

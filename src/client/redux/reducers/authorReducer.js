@@ -2,10 +2,8 @@ import { fromJS, List, Map } from 'immutable';
 import { handleActions } from 'redux-actions';
 import {
   loadAuthorsSuccess,
-
   createAuthorSuccess,
   updateAuthorSuccess,
-
   deleteAuthorSuccess
 } from '../actions/authorActions';
 

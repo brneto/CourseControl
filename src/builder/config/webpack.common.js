@@ -81,8 +81,8 @@ export const commonConfig = {
               ],
               plugins: [
                 'react-hot-loader/babel',
-                '@babel/plugin-proposal-decorators',
-                '@babel/plugin-proposal-class-properties',
+                ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+                ['@babel/plugin-proposal-class-properties', { 'loose': true }],
                 '@babel/plugin-proposal-object-rest-spread',
                 '@babel/plugin-proposal-function-bind',
                 // It's required Babel Syntax Dynamic Import Plugin to

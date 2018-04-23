@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import flexbugsfixes from 'postcss-flexbugs-fixes';
+import StyleLintPlugin from 'stylelint-webpack-plugin';
 import path from 'path';
 
 const debug = process.env.NODE_ENV !== 'production';
@@ -146,8 +147,9 @@ export const commonConfig = {
       // both options are optional
       filename: `${filePrefix}.css`,
       chunkFilename: `${chunkPrefix}.css`
-    })
+    }),
 
+    new StyleLintPlugin({ syntax: 'scss' })
     // Default used by Webpack 4
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)

@@ -5,6 +5,7 @@
   "description": "React and Redux example",
   "main": "index.js",
   "scripts": {
+    "prestart": "yarn lint:scss",
     "start": "pm2 start process.json",
     "poststart": "run-p watch:*",
     "stop": "pm2 stop process.json",
@@ -16,7 +17,7 @@
     "watch:lint": "yarn lint:js --watch",
     "test": "jest",
     "watch:test": "TERM=dumb yarn test -o --watch",
-    "prebuild": "yarn poststop && yarn security",
+    "prebuild": "yarn lint test security poststop",
     "build": "pm2 start process.json --env production",
     "postbuild": "yarn watch:app",
     "security": "nsp check",

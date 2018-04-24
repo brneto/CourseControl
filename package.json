@@ -113,7 +113,7 @@
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.4",
     "prettier-eslint": "^8.8.1",
-    "react-hot-loader": "^4.1.1",
+    "react-hot-loader": "^4.1.2",
     "react-test-renderer": "^16.3.2",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",

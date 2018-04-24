@@ -11,7 +11,7 @@
     "poststop": "pm2 flush; pm2 delete all",
     "plist": "pm2 l",
     "lint:js": "esw src",
-    "lint:css": "stylelint \"src/client/components/**/*.scss\"",
+    "lint:scss": "stylelint \"src/client/components/**/*.scss\"",
     "lint": "run-s lint:*",
     "watch:lint": "yarn lint:js --watch",
     "test": "jest",

@@ -27,6 +27,7 @@ export const htmlPluginOptions = {
 export const commonConfig = {
   target: 'web',
   bail: true,
+  context: path.resolve(__dirname, '../../../'),
   entry: {
     app: ['@babel/polyfill', './src/client/index.js']
   },

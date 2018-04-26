@@ -43,7 +43,7 @@ export const prodConfig = merge(commonConfig, {
   },
   plugins: [
     // Remove/clean your build folder(s) before building
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist'], commonConfig.context),
 
     // Create HTML file that includes reference to bundled JS.
     new HtmlWebpackPlugin(

@@ -150,7 +150,10 @@ export const commonConfig = {
       chunkFilename: `${chunkPrefix}.css`
     }),
 
-    new StyleLintPlugin({ syntax: 'scss' })
+    new StyleLintPlugin({
+      files: ['src/client/**/*.scss'],
+      syntax: 'scss'
+    })
     // Default used by Webpack 4
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)

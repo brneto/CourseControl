@@ -150,6 +150,8 @@ export const commonConfig = {
       chunkFilename: `${chunkPrefix}.css`
     }),
 
+    // There's an bug in stylelint that did not permit to use scss
+    // nested properties syntax.
     new StyleLintPlugin({
       files: ['src/client/**/*.scss'],
       syntax: 'scss'

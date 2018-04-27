@@ -12,7 +12,7 @@
     "poststop": "pm2 flush; pm2 delete all; exit 0",
     "plist": "pm2 l",
     "lint:js": "esw src",
-    "lint:scss": "stylelint \"src/client/**/*.scss\"",
+    "lint:scss": "stylelint \"src/client/**/*.scss\" --syntax scss",
     "lint": "run-s lint:*",
     "watch:lint": "yarn lint:js --watch",
     "test": "jest",

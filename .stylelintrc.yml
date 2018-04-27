@@ -332,3 +332,8 @@ rules:
   scss/at-else-empty-line-before: never
   scss/at-if-closing-brace-newline-after: always-last-in-chain
   scss/at-if-closing-brace-space-after: always-intermediate
+  # Disable scss nested properties because stylelint don't support it in version 9.2.0
+  scss/declaration-nested-properties:
+    - never
+    - except: only-of-namespace
+  scss/declaration-nested-properties-no-divided-groups: true

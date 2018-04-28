@@ -223,6 +223,9 @@ rules:
   # just be 1 level selector. However, modifiers can introduce an additional compound selector.
   # Furthermore, generic qualifying selectors (e.g. `[dir="rtl"]`) can introduce yet another level.
   selector-max-compound-selectors: 4
+  # Because of a bug in the following rule related to nested properties scss syntax
+  # it needs to be disable to the lint work correctly.
+  no-descending-specificity: null
   # For specificity: disallow IDs (0). Allow for complex combinations of classes, pseudo-classes,
   # attribute modifiers based on selector-max-compound-selectors, plus an addition for
   # pseudo-classes (4). Allow for pseudo-elements (1).
@@ -332,8 +335,7 @@ rules:
   scss/at-else-empty-line-before: never
   scss/at-if-closing-brace-newline-after: always-last-in-chain
   scss/at-if-closing-brace-space-after: always-intermediate
-  # Disable scss nested properties because stylelint don't support it in version 9.2.0
   scss/declaration-nested-properties:
-    - never
+    - always
     - except: only-of-namespace
   scss/declaration-nested-properties-no-divided-groups: true

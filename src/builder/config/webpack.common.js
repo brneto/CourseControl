@@ -5,8 +5,8 @@ import StyleLintPlugin from 'stylelint-webpack-plugin';
 import path from 'path';
 
 const debug = process.env.NODE_ENV !== 'production';
-const filePrefix = debug ? '[name].bundle' : '[name].[chunkhash:8].bundle';
-const chunkPrefix = debug ? '[name].chunk' : '[name].[chunkhash:8].chunk';
+const filePrefix = debug ? '[name].bundle' : '[name].[contenthash].bundle';
+const chunkPrefix = debug ? '[name].chunk' : '[name].[contenthash].chunk';
 const imgFilename = debug ? '[name].[ext]' : '[name].[hash:8].[ext]';
 
 const sassLoaderOptions = {
@@ -35,7 +35,8 @@ export const commonConfig = {
     filename: `${filePrefix}.js`,
     chunkFilename: `${chunkPrefix}.js`,
     path: path.resolve('dist'),
-    publicPath: '/'
+    publicPath: '/',
+    hashDigestLength: 8
   },
   optimization: {
     runtimeChunk: 'single',
@@ -63,6 +64,7 @@ export const commonConfig = {
       {
         test: /\.js$/,
         include: [/src\/client/],
+        //exclude: /node_modules\/(?!@material)/,
         use: [
           { loader: 'thread-loader' },
           { loader: 'babel-loader',

@@ -19,6 +19,6 @@ builderMiddleware().then(middleware => {
   app.listen(
     port,
     // eslint-disable-next-line no-console
-    err => (err ? console.log(err) : open('http://localhost:' + port))
+    err => (err ? console.log(err) : open(`http://localhost:${port}`))
   );
 });

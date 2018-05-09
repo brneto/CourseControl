@@ -6,12 +6,10 @@ import * as authorThunks from '../../redux/thunks/authorThunks';
 import { authorByIdSelector } from '../../redux/selectors/authorSelectors';
 import AuthorForm from './AuthorForm';
 
-const mapStateToProps = state => {
-  const author = authorByIdSelector(state);
-  const saving = state.get('ajaxCallsInProgress') > 0;
-  return { author, saving };
-};
-
+const mapStateToProps = state => ({
+  author: authorByIdSelector(state),
+  saving: state.get('ajaxCallsInProgress') > 0
+});
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(authorThunks, dispatch),
 });

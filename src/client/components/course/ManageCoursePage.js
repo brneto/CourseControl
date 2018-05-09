@@ -7,13 +7,11 @@ import { courseByIdSelector } from '../../redux/selectors/courseSelectors';
 import { authorsFormattedSelector } from '../../redux/selectors/authorSelectors';
 import CourseForm from './CourseForm';
 
-const mapStateToProps = state => {
-  const course = courseByIdSelector(state);
-  const authors = authorsFormattedSelector(state);
-  const saving = state.get('ajaxCallsInProgress') > 0;
-  return { course, authors, saving };
-};
-
+const mapStateToProps = state => ({
+  course: courseByIdSelector(state),
+  authors: authorsFormattedSelector(state),
+  saving: state.get('ajaxCallsInProgress') > 0
+});
 const mapDispatchToProps = dispatch => ({
   // Similar to:
   // { saveCourse: course => dispatch(courseThunks.saveCourse(course)) }

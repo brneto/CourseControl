@@ -29,8 +29,8 @@ class ManageAuthorPage extends Component {
     error: {},
   };
 
-  static getDerivedStateFromProps = nextProps => {
-    const { author: oldAuthor } = this.props;
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    const { author: oldAuthor } = prevState;
     const { author } = nextProps;
 
     return oldAuthor.id !== author.id ? { author } : null;

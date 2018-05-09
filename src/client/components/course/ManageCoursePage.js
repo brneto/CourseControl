@@ -36,13 +36,11 @@ class ManageCoursesPage extends Component {
 
   // This is required because when props change,
   // we'll need to update our container component's state.
-  componentWillReceiveProps = nextProps => {
-    const { course: oldCourse } = this.props;
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    const { course: oldCourse } = prevState;
     const { course } = nextProps;
 
-    if(oldCourse.id !== course.id) {
-      this.setState({ course });
-    }
+    return oldCourse.id !== course.id ? { course } : null;
   };
 
   handleChange = event => {

@@ -3,8 +3,7 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   authors: [],
   courses: [],
-  ajaxCallsInProgress: 0,
-  router: null,
+  ajaxCallsInProgress: 0
 });
 
 export { initialState };

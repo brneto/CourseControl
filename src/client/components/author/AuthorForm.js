@@ -26,7 +26,11 @@ const validate = values => {
 };
 
 const onSubmit = (values, dispatch, props) => {
+  // TODO:
+  // Use redux-form start/stopSubmit actionCreators
+  // to make the form aware of the save requested
   dispatch(saveAuthor(values.toJS()));
+  console.info(props.form);
 };
 
 @reduxForm({ form: 'author', onSubmit, validate, enableReinitialize: true })

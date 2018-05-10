@@ -32,19 +32,20 @@ function* workLoadAuthors() {
 }
 
 function* workSaveAuthor(action) {
+  const { author } = action.payload;
+  const { form } = action.meta;
+
+  yield put(startSubmit(form));
   try {
-    const { author } = action.payload;
-    const { form } = action.meta;
-    console.log('form:', form);
-    console.log(yield put(startSubmit(form)));
     const savedAuthor = yield call(authorApi.saveAuthor, author);
     yield author.id ?
       put(updateAuthorSuccess(savedAuthor)) :
       put(createAuthorSuccess(savedAuthor));
-    yield put(stopSubmit(form));
     yield put(saveAuthorWarn());
   } catch(e) {
     throw(e);
+  } finally {
+    yield put(stopSubmit(form));
   }
 }
 

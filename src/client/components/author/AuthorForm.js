@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { authorByIdSelector } from '../../redux/selectors/authorSelectors';
 import { saveAuthor } from '../../redux/thunks/authorThunks';
 import TextInput from '../common/TextInput';
 
@@ -26,13 +28,10 @@ const validate = values => {
 };
 
 const onSubmit = (values, dispatch, props) => {
-  // TODO:
-  // Use redux-form start/stopSubmit actionCreators
-  // to make the form aware of the save requested
-  console.log('props.form:', props.form);
   dispatch(saveAuthor(values.toJS(), props.form));
 };
 
+@connect(state => ({ initialValues: authorByIdSelector(state) }))
 @reduxForm({ form: 'author', onSubmit, validate, enableReinitialize: true })
 class AuthorForm extends Component {
   static propTypes = { ...propTypes };

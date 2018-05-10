@@ -5,7 +5,7 @@ import AboutPage from './components/about/AboutPage';
 import CoursesPage from './components/course/CoursesPage';
 import ManageCoursePage from './components/course/ManageCoursePage';
 import AuthorsPage from './components/author/AuthorsPage';
-import ManageAuthorPage from './components/author/ManageAuthorPage';
+import AuthorForm from './components/author/AuthorForm';
 
 const NavLinks = () => (
   <ul className="navbar-nav">
@@ -46,8 +46,8 @@ const Routes = () => (
       <Route path="/about" component={AboutPage} />
       <Route path="/course/:id" component={ManageCoursePage} />
       <Route path="/course" component={ManageCoursePage} />
-      <Route path="/author/:id" component={ManageAuthorPage} />
-      <Route path="/author" component={ManageAuthorPage} />
+      <Route path="/author/:id" component={AuthorForm} />
+      <Route path="/author" component={AuthorForm} />
     </Switch>
   </div>
 );

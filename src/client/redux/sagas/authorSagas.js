@@ -1,4 +1,5 @@
 import { takeEvery, call, put, all } from 'redux-saga/effects';
+import { startSubmit, stopSubmit } from 'redux-form/immutable';
 import authorApi from '../../api/mockAuthorApi';
 import {
   loadAuthorsRequest,
@@ -34,10 +35,13 @@ function* workSaveAuthor(action) {
   try {
     const { author } = action.payload;
     const { form } = action.meta;
+    console.log('form:', form);
+    console.log(yield put(startSubmit(form)));
     const savedAuthor = yield call(authorApi.saveAuthor, author);
     yield author.id ?
       put(updateAuthorSuccess(savedAuthor)) :
       put(createAuthorSuccess(savedAuthor));
+    yield put(stopSubmit(form));
     yield put(saveAuthorWarn());
   } catch(e) {
     throw(e);

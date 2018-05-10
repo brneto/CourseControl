@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form/immutable';
+import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { saveAuthor } from '../../redux/thunks/authorThunks';
 import TextInput from '../common/TextInput';
 
@@ -29,24 +29,20 @@ const onSubmit = (values, dispatch, props) => {
   // TODO:
   // Use redux-form start/stopSubmit actionCreators
   // to make the form aware of the save requested
+  console.log('props.form:', props.form);
   dispatch(saveAuthor(values.toJS(), props.form));
-  console.info(props.form);
 };
 
 @reduxForm({ form: 'author', onSubmit, validate, enableReinitialize: true })
 class AuthorForm extends Component {
-  static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    reset: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired
-  };
+  static propTypes = { ...propTypes };
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
     return (
       <form className="w-50 p-3" onSubmit={handleSubmit} noValidate>
         <h1>Manage Author</h1>
+        <h1>{submitting}</h1>
         <Field name="id" component="input" type="hidden" />
         <Field name="firstName" component={TextInput} label="FirstName" />
         <Field name="lastName" component={TextInput} label="LastName" />

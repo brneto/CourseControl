@@ -24,8 +24,7 @@ const authorSelector = state => {
 
 const authorByIdSelector = createSelector(
   authorSelector,
-  author => author ? author.toJS() :
-    { id: '', firstName: '', lastName: '' }
+  author => author ? author : new Map()
 );
 
 export { authorsFormattedSelector, authorByIdSelector };

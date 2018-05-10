@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { isValid } from 'redux-form/immutable';
 import * as authorThunks from '../../redux/thunks/authorThunks';
 import { authorByIdSelector } from '../../redux/selectors/authorSelectors';
 import AuthorForm from './AuthorForm';
 
 const mapStateToProps = state => ({
   author: authorByIdSelector(state),
+  valid: isValid('author')(state),
   saving: state.get('ajaxCallsInProgress') > 0
 });
 const mapDispatchToProps = dispatch => ({
@@ -18,65 +20,30 @@ const mapDispatchToProps = dispatch => ({
 class ManageAuthorPage extends Component {
   static propTypes = {
     author: PropTypes.object.isRequired,
+    valid: PropTypes.bool.isRequired,
     saving: PropTypes.bool.isRequired,
     actions: PropTypes.object.isRequired,
   };
 
-  state = {
-    author: this.props.author,
-    error: {},
+  handleSubmit = values => {
+    const { actions, valid } = this.props;
+
+    if(valid) {
+      actions.saveAuthor(values.toJS());
+    }
   };
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    const { author: oldAuthor } = prevState;
-    const { author } = nextProps;
+  render() {
+    const { author, saving } = this.props;
 
-    return author.id !== oldAuthor.id ? { author } : null;
+    return (
+      <AuthorForm
+        onSubmit={this.handleSubmit}
+        initialValues={author}
+        saving={saving}
+      />
+    );
   }
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    const { author } = this.state;
-
-    author[name] = value;
-    this.setState({ author });
-  };
-
-  handleSubmit = event => {
-    const { actions } = this.props;
-
-    if(this.courseFormIsValid()) {
-      actions.saveAuthor(this.state.author);
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  courseFormIsValid = () => {
-    const { author } = this.state;
-    let formIsValid = true;
-    let error = {};
-
-    if(author.firstName.length < 5) {
-      error.firstName = 'Firstname must be at least 5 characters.';
-      formIsValid = false;
-    }
-
-    this.setState({ error });
-    return formIsValid;
-  };
-
-  render = () => (
-    <AuthorForm
-      onChange={this.handleChange}
-      onSubmit={this.handleSubmit}
-      onBlur={this.handleBlur}
-      author={this.state.author}
-      saving={this.props.saving}
-      error={this.state.error}
-    />
-  );
 }
 
 export default ManageAuthorPage;

@@ -12,7 +12,7 @@ const TextInput = ({ input, label, meta: { touched, error } }) => {
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={input.name}>{label}</label>
       <div className="field">
         <input
           {...input}
@@ -27,12 +27,7 @@ const TextInput = ({ input, label, meta: { touched, error } }) => {
 };
 
 TextInput.propTypes = {
-  name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  error: PropTypes.string,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired
 };

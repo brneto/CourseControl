@@ -29,7 +29,7 @@ const onSubmit = (values, dispatch, props) => {
   // TODO:
   // Use redux-form start/stopSubmit actionCreators
   // to make the form aware of the save requested
-  dispatch(saveAuthor(values.toJS()));
+  dispatch(saveAuthor(values.toJS(), props.form));
   console.info(props.form);
 };
 

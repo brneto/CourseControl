@@ -33,6 +33,7 @@ function* workLoadAuthors() {
 function* workSaveAuthor(action) {
   try {
     const { author } = action.payload;
+    const { form } = action.meta;
     const savedAuthor = yield call(authorApi.saveAuthor, author);
     yield author.id ?
       put(updateAuthorSuccess(savedAuthor)) :

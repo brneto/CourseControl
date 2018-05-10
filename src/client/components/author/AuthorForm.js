@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
+import { saveAuthor } from '../../redux/thunks/authorThunks';
 import TextInput from '../common/TextInput';
 
 const required = value => value ? undefined : 'Required';
@@ -24,7 +25,11 @@ const validate = values => {
   return errors;
 };
 
-@reduxForm({ form: 'author', validate, enableReinitialize: true })
+const onSubmit = (values, dispatch, props) => {
+  dispatch(saveAuthor(values.toJS()));
+};
+
+@reduxForm({ form: 'author', onSubmit, validate, enableReinitialize: true })
 class AuthorForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,

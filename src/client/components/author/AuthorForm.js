@@ -27,9 +27,8 @@ const validate = values => {
   return errors;
 };
 
-const onSubmit = (values, dispatch, props) => {
+const onSubmit = (values, dispatch, props) =>
   dispatch(saveAuthor(values.toJS(), props.form));
-};
 
 @connect(state => ({ initialValues: authorByIdSelector(state) }))
 @reduxForm({ form: 'author', onSubmit, validate, enableReinitialize: true })

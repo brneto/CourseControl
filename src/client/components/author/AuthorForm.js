@@ -45,7 +45,7 @@ class AuthorForm extends Component {
         <Field name="firstName" component={TextInput} label="FirstName" />
         <Field name="lastName" component={TextInput} label="LastName" />
         <button
-          className="btn btn-primary float-right"
+          className="btn btn-primary float-right ml-3"
           disabled={submitting}
         >
           {submitting ? 'Saving...' : 'Save'}

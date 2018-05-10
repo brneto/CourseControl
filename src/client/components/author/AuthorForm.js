@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { reduxForm } from 'redux-form';
 import TextInput from '../common/TextInput';
 
+
+@reduxForm({ form: 'author' })
 class AuthorForm extends Component {
   static propTypes = {
     author: PropTypes.object.isRequired,

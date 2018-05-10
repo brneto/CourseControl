@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import submit from './validateSubmit';
 import TextInput from '../common/TextInput';
 
 
@@ -15,29 +16,31 @@ class AuthorForm extends Component {
   };
 
   render () {
-    const { author, onChange, onSubmit, saving, error } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
-      <form className="w-50 p-3" noValidate>
+      <form
+        className="w-50 p-3"
+        onSubmit={handleSubmit(submit)}
+        noValidate
+      >
         <h1>Manage Author</h1>
-        <TextInput
+        <Field
           name="firstName"
+          component={TextInput}
           label="FirstName"
-          value={author.firstName}
-          onChange={onChange}
-          error={error.firstName} />
+        />
 
-        <TextInput
+        <Field
           name="lastName"
+          component={TextInput}
           label="LastName"
-          value={author.lastName}
-          onChange={onChange}
-          error={error.lastName} />
-
+        />
         <button
-          disabled={saving}
           className="btn btn-primary float-right"
-          onClick={onSubmit}
-        >{saving ? 'Saving...' : 'Save'}</button>
+          disabled={submitting}
+        >
+          {submitting ? 'Saving...' : 'Save'}
+        </button>
       </form>
   );
   }

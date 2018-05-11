@@ -36,10 +36,10 @@ class AuthorForm extends Component {
 
   render() {
     const { handleSubmit, pristine, reset, submitting } = this.props;
+
     return (
       <form className="w-50 p-3" onSubmit={handleSubmit} noValidate>
         <h1>Manage Author</h1>
-        <h1>{submitting}</h1>
         <Field name="id" component="input" type="hidden" />
         <Field name="firstName" component={TextInput} label="FirstName" />
         <Field name="lastName" component={TextInput} label="LastName" />

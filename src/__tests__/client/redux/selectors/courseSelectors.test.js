@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import { courseByIdSelector } from '../../../../client/redux/selectors/courseSelectors';
 
 describe('Course Selectors', () => {
@@ -17,7 +17,7 @@ describe('Course Selectors', () => {
 
     it('should return course with params informed from list courses', () => {
       //arrange
-      const expected = { id: 'design-pattern', title: 'Design Pattern' };
+      const expected = new Map({ id: 'design-pattern', title: 'Design Pattern' });
 
       //act
       const course = courseByIdSelector(state);

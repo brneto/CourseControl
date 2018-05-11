@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = ({ input, label, meta: { touched, error } }) => {
+const TextInput = ({ input, meta: { touched, error }, label }) => {
   //const { input, name, label, onChange, placeholder, value, error } = props;
   let wrapperClass = 'form-group';
 

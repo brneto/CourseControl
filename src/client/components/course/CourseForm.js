@@ -41,7 +41,7 @@ class CourseForm extends Component {
         <Field name="id" component="input" type="hidden" />
         <Field name="title" component={TextInput} label="Title" />
         <Field
-          name="author"
+          name="authorId"
           component={Select}
           label="Author"
           options={authors}

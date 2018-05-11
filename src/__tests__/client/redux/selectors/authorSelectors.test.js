@@ -11,10 +11,10 @@ describe('Author Selectors', () => {
         ]
       });
 
-      const expected = [
-        { value: 'cory-house', text: 'Cory House' },
-        { value: 'scott-allen', text: 'Scott Allen' }
-      ];
+      const expected = fromJS([
+        { value: 'cory-house', content: 'Cory House' },
+        { value: 'scott-allen', content: 'Scott Allen' }
+      ]);
 
       expect(authorsFormattedSelector(state)).toEqual(expected);
     });

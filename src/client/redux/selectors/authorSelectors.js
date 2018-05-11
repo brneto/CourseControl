@@ -1,15 +1,15 @@
+import { Map } from 'immutable';
 import { createSelector } from 'reselect';
 import { createMatchSelector } from 'react-router-redux';
 
-const authorFormatter =
-  author => ({
+const authorFormatter = author => new Map({
     value: author.get('id'),
-    text: `${author.get('firstName')} ${author.get('lastName')}`,
+    content: `${author.get('firstName')} ${author.get('lastName')}`,
   });
 
 const authorsFormattedSelector = createSelector(
   state => state.get('authors'),
-  authors => authors.map(author => authorFormatter(author)).toJS()
+  authors => authors.map(author => authorFormatter(author))
 );
 
 const authorSelector = state => {

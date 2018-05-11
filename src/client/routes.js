@@ -2,10 +2,8 @@ import React from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
-import CoursesPage from './components/course/CoursesPage';
-import ManageCoursePage from './components/course/ManageCoursePage';
-import AuthorsPage from './components/author/AuthorsPage';
-import AuthorForm from './components/author/AuthorForm';
+import { AuthorsPage, AuthorForm } from './components/author';
+import { CoursesPage, CourseForm } from './components/course';
 
 const NavLinks = () => (
   <ul className="navbar-nav">
@@ -44,8 +42,8 @@ const Routes = () => (
       <Route path="/courses" component={CoursesPage} />
       <Route path="/authors" component={AuthorsPage} />
       <Route path="/about" component={AboutPage} />
-      <Route path="/course/:id" component={ManageCoursePage} />
-      <Route path="/course" component={ManageCoursePage} />
+      <Route path="/course/:id" component={CourseForm} />
+      <Route path="/course" component={CourseForm} />
       <Route path="/author/:id" component={AuthorForm} />
       <Route path="/author" component={AuthorForm} />
     </Switch>

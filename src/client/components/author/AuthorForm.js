@@ -4,7 +4,7 @@ import { Field, reduxForm, propTypes } from 'redux-form/immutable';
 import { authorByIdSelector } from '../../redux/selectors';
 import { saveAuthor } from '../../redux/thunks/authorThunks';
 import { required } from '../../utils/validations';
-import TextInput from '../common/TextInput';
+import { TextInput } from '../commons';
 
 const validate = values => {
   const errors = {};

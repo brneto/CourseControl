@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SelectInput = ({ children, input, label, meta: { touched, error } }) => {
+const Select = ({ input, meta: { touched, error }, label, options }) => {
 
   return (
     <div className="form-group">
       <label htmlFor={input.name}>{label}</label>
       <div className="field">
         <select className="form-control" {...input}>
-          {children}
+          <option />
+          {options.map(option => (
+            <option key={option.get('value')} value={option.get('value')}>
+              {option.get('content')}
+            </option>
+          ))}
         </select>
         {touched && error && <div className="alert alert-danger">{error}</div>}
       </div>
@@ -16,11 +21,11 @@ const SelectInput = ({ children, input, label, meta: { touched, error } }) => {
   );
 };
 
-SelectInput.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+Select.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired,
 };
 
-export default SelectInput;
+export default Select;

@@ -1,6 +1,6 @@
 import { takeEvery, call, put, all } from 'redux-saga/effects';
 import { startSubmit, stopSubmit } from 'redux-form/immutable';
-import authorApi from '../../api/mockAuthorApi';
+import { authorApi } from '../../api';
 import {
   loadAuthorsRequest,
   loadAuthorsSuccess,

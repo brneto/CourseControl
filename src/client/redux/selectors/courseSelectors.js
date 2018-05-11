@@ -14,7 +14,7 @@ const courseSelector = state => {
 const courseByIdSelector = createSelector(
   courseSelector,
   course => course ? course.toJS() :
-    { id: '', watchHref: '', title: '', author: '', length: '', category: '' }
+    { id: '', watchHref: '', title: '', author: '', duration: '', category: '' }
 );
 
 export { courseByIdSelector };

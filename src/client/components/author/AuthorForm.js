@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, propTypes } from 'redux-form/immutable';
-import { authorByIdSelector } from '../../redux/selectors/authorSelectors';
+import { authorByIdSelector } from '../../redux/selectors';
 import { saveAuthor } from '../../redux/thunks/authorThunks';
+import { required } from '../../utils/validations';
 import TextInput from '../common/TextInput';
-
-const required = value => value ? undefined : 'Required';
-const minLength = min => value =>
-  value && value.length < min
-    ? `Must have at least ${min} characters.`
-    : undefined;
-const minLength5 = minLength(5);
 
 const validate = values => {
   const errors = {};
@@ -20,17 +14,14 @@ const validate = values => {
   errors.firstName = required(firstName);
   errors.lastName = required(lastName);
 
-  if(!errors.firstName)
-    errors.firstName = minLength5(firstName);
-
   return errors;
 };
-
-const onSubmit = (values, dispatch, props) =>
-  dispatch(saveAuthor(values.toJS(), props.form));
+// onSubmit : function(values, dispatch, props)
+const onSubmit = (values, dispatch, { form }) =>
+  dispatch(saveAuthor(values, form));
 
 @connect(state => ({ initialValues: authorByIdSelector(state) }))
-@reduxForm({ form: 'author', onSubmit, validate, enableReinitialize: true })
+@reduxForm({ form: 'author', enableReinitialize: true, onSubmit, validate })
 class AuthorForm extends Component {
   static propTypes = { ...propTypes };
 

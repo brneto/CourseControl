@@ -4,7 +4,7 @@ import ManageCoursePage from '../../../../client/components/course/ManageCourseP
 
 function setup() {
   const props = {
-    course: { id: '', watchHref: '', title: '', author: '', length: '', category: '' },
+    course: { id: '', watchHref: '', title: '', author: '', duration: '', category: '' },
     authors: [],
     actions: { saveCourse: () => Promise.resolve() },
     goToRoute: () => '/courses',

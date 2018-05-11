@@ -11,7 +11,7 @@ export const loadAuthors = () => dispatch => dispatch(loadAuthorsRequest());
 export const goToAddAuthor = () => dispatch => dispatch(push('/author'));
 
 export const saveAuthor = (author, form) => dispatch =>
-  dispatch(saveAuthorRequest(author, form));
+  dispatch(saveAuthorRequest(author.toJS(), form));
 
 export const saveAuthorWarn = () => dispatch => {
   toastr.success('Author saved');

@@ -27,9 +27,9 @@ const TextInput = ({ input, label, meta: { touched, error } }) => {
 };
 
 TextInput.propTypes = {
-  label: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired
+  meta: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 export default TextInput;

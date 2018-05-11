@@ -47,7 +47,8 @@ export class CourseReduxForm extends Component {
           // Modify SelectInput component to be inject
           // into this Field redux form component
         }
-        <Field name="servico" component="select">
+        <Field name="author" component="select">
+          <option value="">Select Author</option>
           {authors.map(author => (
             <option key={author.id} value={author.id}>
               {author.text}

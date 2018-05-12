@@ -6,7 +6,7 @@ import * as authorThunks from '../../redux/thunks/authorThunks';
 import { authorsFormattedSelector } from '../../redux/selectors/authorSelectors';
 import AuthorsList from './AuthorsList';
 
-const mapStateToProps = state => ({ authors: authorsFormattedSelector(state) });
+const mapStateToProps = state => ({ authors: authorsFormattedSelector(state).toJS() });
 
 const mapDispatchToProps = dispatch => (
     { actions: bindActionCreators(authorThunks, dispatch) }
@@ -21,13 +21,14 @@ class AuthorsPage extends Component {
 
   render() {
     const { authors, actions } = this.props;
+
     return (
       <>
         <h1>Authors</h1>
         <button
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
-          onClick={actions.goToAddAuthor}>Add Author</button>
+          onClick={() => actions.goToAddAuthor()}>Add Author</button>
         <AuthorsList authors={authors} />
       </>
     );

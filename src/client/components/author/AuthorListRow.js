@@ -33,7 +33,7 @@ class AuthorListRow extends Component {
       <tr>
         <td>{author.value}</td>
         <td>
-          <Link to={'/author/' + author.value}>{author.text}</Link>
+          <Link to={'/author/' + author.value}>{author.content}</Link>
         </td>
         <td>
           <button

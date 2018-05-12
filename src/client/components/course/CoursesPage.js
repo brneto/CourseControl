@@ -26,6 +26,7 @@ class CoursesPage extends Component {
 
   render() {
     const { courses, actions } = this.props;
+
     return (
       <>
         <h1>Courses</h1>

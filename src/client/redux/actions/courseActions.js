@@ -14,7 +14,10 @@ export const {
   LOAD_COURSES_REQUEST: null,
   LOAD_COURSES_SUCCESS: courses => ({ courses }),
 
-  SAVE_COURSE_REQUEST: course => ({ course }),
+  SAVE_COURSE_REQUEST: [
+    course => ({ course }),
+    (course, form) => ({ form })
+  ],
   CREATE_COURSE_SUCCESS: course => ({ course }),
   UPDATE_COURSE_SUCCESS: course => ({ course }),
 

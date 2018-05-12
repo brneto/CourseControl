@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import { Routes } from '../routes';
-import Header from './common/Header';
+import { Header } from './commons';
 
 function mapStateToProps(state) {
   return {

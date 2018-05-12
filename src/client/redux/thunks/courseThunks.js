@@ -10,15 +10,15 @@ export const loadCourses = () => dispatch => dispatch(loadCoursesRequest());
 
 export const goToAddCourse = () => dispatch => dispatch(push('/course'));
 
-export const saveCourse = course => dispatch => dispatch(saveCourseRequest(course));
+export const saveCourse = (course, form) => dispatch =>
+  dispatch(saveCourseRequest(course.toJS(), form));
 
 export const saveCourseWarn = () => dispatch => {
   toastr.success('Course saved');
   return dispatch(push('/courses'));
 };
 
-export const deleteCourse = course => dispatch => dispatch(deleteCourseRequest(course));
+export const deleteCourse = course => dispatch =>
+  dispatch(deleteCourseRequest(course));
 
-export const deleteCourseWarn = () => () => {
-  toastr.success('Course deleted');
-};
+export const deleteCourseWarn = () => () => toastr.success('Course deleted');

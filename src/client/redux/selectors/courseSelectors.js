@@ -13,8 +13,7 @@ const courseSelector = state => {
 
 const courseByIdSelector = createSelector(
   courseSelector,
-  course => course ? course.toJS() :
-    { id: '', watchHref: '', title: '', author: '', length: '', category: '' }
+  course => course ? course : new Map()
 );
 
 export { courseByIdSelector };

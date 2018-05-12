@@ -38,6 +38,8 @@
     "babel/object-curly-spacing": [1, "always"],
     "babel/quotes": [2, "single"],
     "babel/semi": 2,
-    "react/prop-types": 1
+    "react/no-unused-prop-types": 1,
+    "react/no-array-index-key": 1,
+    "react/no-unused-state": 1
   }
 }

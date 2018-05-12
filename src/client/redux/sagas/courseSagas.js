@@ -1,5 +1,6 @@
 import { all, takeEvery, call, put } from 'redux-saga/effects';
-import courseApi from '../../api/mockCourseApi';
+import { startSubmit, stopSubmit } from 'redux-form/immutable';
+import { courseApi } from '../../api';
 import {
   loadCoursesRequest,
   loadCoursesSuccess,
@@ -31,8 +32,11 @@ function* workLoadCourses() {
 }
 
 function* workSaveCourse(action) {
+  const { course } = action.payload;
+  const { form } = action.meta;
+
+  yield put(startSubmit(form));
   try {
-    const { course } = action.payload;
     const savedCourse = yield call(courseApi.saveCourse, course);
     yield course.id ?
       put(updateCourseSuccess(savedCourse)) :
@@ -40,6 +44,8 @@ function* workSaveCourse(action) {
     yield put(saveCourseWarn());
   } catch(e) {
     throw(e);
+  } finally {
+    yield put(stopSubmit(form));
   }
 }
 

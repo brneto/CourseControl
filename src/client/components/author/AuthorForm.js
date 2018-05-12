@@ -1,43 +1,55 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import TextInput from '../common/TextInput';
+import { connect } from 'react-redux';
+import { Field, reduxForm, propTypes } from 'redux-form/immutable';
+import { authorByIdSelector } from '../../redux/selectors';
+import { saveAuthor } from '../../redux/thunks/authorThunks';
+import { required } from '../../utils/validations';
+import { TextInput } from '../commons';
 
+const validate = values => {
+  const errors = {};
+  const firstName = values.get('firstName');
+  const lastName = values.get('lastName');
 
+  errors.firstName = required(firstName);
+  errors.lastName = required(lastName);
+
+  return errors;
+};
+// onSubmit : function(values, dispatch, props)
+const onSubmit = (values, dispatch, { form }) =>
+  dispatch(saveAuthor(values, form));
+
+@connect(state => ({ initialValues: authorByIdSelector(state) }))
+@reduxForm({ form: 'author', enableReinitialize: true, onSubmit, validate })
 class AuthorForm extends Component {
-  static propTypes = {
-    author: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired,
-    saving: PropTypes.bool,
-    error: PropTypes.object,
-  };
+  static propTypes = { ...propTypes };
 
-  render () {
-    const { author, onChange, onSubmit, saving, error } = this.props;
+  render() {
+    const { handleSubmit, pristine, reset, submitting } = this.props;
+
     return (
-      <form className="w-50 p-3" noValidate>
+      <form className="w-50 p-3" onSubmit={handleSubmit} noValidate>
         <h1>Manage Author</h1>
-        <TextInput
-          name="firstName"
-          label="FirstName"
-          value={author.firstName}
-          onChange={onChange}
-          error={error.firstName} />
-
-        <TextInput
-          name="lastName"
-          label="LastName"
-          value={author.lastName}
-          onChange={onChange}
-          error={error.lastName} />
-
+        <Field name="id" component="input" type="hidden" />
+        <Field name="firstName" component={TextInput} label="FirstName" />
+        <Field name="lastName" component={TextInput} label="LastName" />
         <button
-          disabled={saving}
-          className="btn btn-primary float-right"
-          onClick={onSubmit}
-        >{saving ? 'Saving...' : 'Save'}</button>
+          className="btn btn-primary float-right ml-3"
+          disabled={submitting}
+        >
+          {submitting ? 'Saving...' : 'Save'}
+        </button>
+        <button
+          className="btn btn-secondary float-right"
+          type="button"
+          disabled={pristine || submitting}
+          onClick={reset}
+        >
+          Clear
+        </button>
       </form>
-  );
+    );
   }
 }
 

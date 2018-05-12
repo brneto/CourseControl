@@ -1,12 +1,16 @@
 import React from 'react';
-import { render, shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import { fromJS } from 'immutable';
 import { routerReducer as router } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux-immutable';
-import { reducer as form } from 'redux-form/immutable';
-import { startSubmit, stopSubmit, getFormSyncErrors } from 'redux-form/immutable';
+import {
+  reducer as form,
+  startSubmit,
+  stopSubmit,
+  getFormSyncErrors
+} from 'redux-form/immutable';
 import authors from '../../../../client/redux/reducers/authorReducer';
 import CourseForm from '../../../../client/components/course/CourseForm';
 
@@ -21,11 +25,12 @@ function makeStore(initial = {}, logger) {
 
 const logger = jest.fn((state = {}) => state);
 const store = makeStore({}, logger);
-const getWrapper = store => mount(
-  <Provider store={store}>
-    <CourseForm />
-  </Provider>
-);
+const getWrapper = store =>
+  mount(
+    <Provider store={store}>
+      <CourseForm />
+    </Provider>
+  );
 const wrapper = getWrapper(store);
 const formName = 'course';
 

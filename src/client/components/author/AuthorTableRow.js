@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => (
 );
 
 @connect(null, mapDispatchToProps)
-class AuthorListRow extends Component {
+class AuthorTableRow extends Component {
   static propTypes = {
     author: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired
@@ -49,4 +49,4 @@ class AuthorListRow extends Component {
   }
 }
 
-export default AuthorListRow;
+export default AuthorTableRow;

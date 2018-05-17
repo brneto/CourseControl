@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as authorThunks from '../../redux/thunks/authorThunks';
 import { authorsFormattedSelector } from '../../redux/selectors/authorSelectors';
-import AuthorsList from './AuthorsList';
+import AuthorTable from './AuthorTable';
 
 const mapStateToProps = state => ({ authors: authorsFormattedSelector(state).toJS() });
 
@@ -29,7 +29,7 @@ class AuthorsPage extends Component {
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
           onClick={() => actions.goToAddAuthor()}>Add Author</button>
-        <AuthorsList authors={authors} />
+        <AuthorTable authors={authors} />
       </>
     );
   }

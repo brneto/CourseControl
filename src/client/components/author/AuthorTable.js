@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AuthorListRow from './AuthorListRow';
+import AuthorTableRow from './AuthorTableRow';
 
-class AuthorList extends Component {
+class AuthorTable extends Component {
   static propTypes = {
     authors: PropTypes.array.isRequired
   };
@@ -21,7 +21,7 @@ class AuthorList extends Component {
         </thead>
         <tbody>
           {authors.map(author =>
-            <AuthorListRow key={author.value} author={author} />
+            <AuthorTableRow key={author.value} author={author} />
           )}
         </tbody>
       </table>
@@ -29,4 +29,4 @@ class AuthorList extends Component {
   }
 }
 
-export default AuthorList;
+export default AuthorTable;

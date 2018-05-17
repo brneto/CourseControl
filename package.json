@@ -123,7 +123,7 @@
     "redux-mock-store": "^1.5.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
-    "stylelint": "^9.2.0",
+    "stylelint": "^9.2.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^0.8.1",
     "stylelint-scss": "^3.1.0",

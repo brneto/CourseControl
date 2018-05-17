@@ -33,7 +33,7 @@ class CoursesPage extends Component {
         <button
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
-          onClick={actions.goToAddCourse}>Add Course</button>
+          onClick={() => actions.goToAddCourse()}>Add Course</button>
         <CoursesList courses={courses} />
       </>
     );

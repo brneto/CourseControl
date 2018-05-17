@@ -9,26 +9,33 @@ import {
 } from '../actions/authorActions';
 
 const defaultState = new List();
-const authorReducer = handleActions({
-  [loadAuthorsSuccess]: (state, action) => fromJS(action.payload.authors),
-  [createAuthorSuccess]: (state, action) => state.push(new Map(action.payload.author)),
-  [updateAuthorSuccess]: (state, action) => state.splice(
-    state.findKey(author => author.get('id') === action.payload.author.id),
-    1, new Map(action.payload.author)
-  ),
-  [deleteAuthorRequest]: (state, action) => {
-    action.payload.author.deleting = true;
-    return state.splice(
-      state.findKey(author => author.get('id') === action.payload.author.id),
-      1,
-      new Map(action.payload.author)
-    );
+const authorReducer = handleActions(
+  {
+    [loadAuthorsSuccess]: (state, action) => fromJS(action.payload.authors),
+    [createAuthorSuccess]: (state, action) =>
+      state.push(new Map(action.payload.author)),
+    [updateAuthorSuccess]: (state, action) =>
+      state.splice(
+        state.findKey(author => author.get('id') === action.payload.author.id),
+        1,
+        new Map(action.payload.author)
+      ),
+    [deleteAuthorRequest]: (state, action) => {
+      action.payload.author.deleting = true;
+      return state.splice(
+        state.findKey(author => author.get('id') === action.payload.author.id),
+        1,
+        new Map(action.payload.author)
+      );
+    },
+    [deleteAuthorSuccess]: (state, action) =>
+      state.splice(
+        state.findKey(author => author.get('id') === action.payload.authorId),
+        1
+      )
   },
-  [deleteAuthorSuccess]: (state, action) => state.splice(
-    state.findKey(author => author.get('id') === action.payload.authorId),
-    1
-  ),
-}, defaultState);
+  defaultState
+);
 
 // const authorReducer = (state = new List(), action) => {
 //   switch(action.type) {

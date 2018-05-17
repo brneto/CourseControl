@@ -6,12 +6,11 @@ import * as courseThunks from '../../redux/thunks/courseThunks';
 import CourseTable from './CourseTable';
 
 const mapStateToProps = state => ({ courses: state.get('courses').toJS() });
-
-const mapDispatchToProps = dispatch => (
-  // Same as:
-  // actions: course => dispatch(courseActions.createCourse(course))
-  { actions: bindActionCreators(courseThunks, dispatch) }
-);
+// Same as:
+// actions: course => dispatch(courseActions.createCourse(course))
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(courseThunks, dispatch)
+});
 
 // Same as:
 // export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
@@ -19,13 +18,7 @@ const mapDispatchToProps = dispatch => (
 class CoursesPage extends Component {
   static propTypes = {
     courses: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
-
-  handleDelete = course => {
-    const { actions } = this.props;
-
-    actions.deleteCourse(course);
+    actions: PropTypes.object.isRequired
   };
 
   render() {
@@ -38,10 +31,12 @@ class CoursesPage extends Component {
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
           onClick={() => actions.goToAddCourse()}
-        >Add Course</button>
+        >
+          Add Course
+        </button>
         <CourseTable
           courses={courses}
-          onDelete={this.handleDelete}
+          onDelete={course => actions.deleteCourse(course)}
         />
       </>
     );

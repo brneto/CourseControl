@@ -16,15 +16,13 @@ describe('Author Selectors', () => {
           id: 'cory-house',
           firstName: 'Cory',
           lastName: 'House',
-          fullName: 'Cory House',
-          deleting: false
+          fullName: 'Cory House'
         },
         {
           id: 'scott-allen',
           firstName: 'Scott',
           lastName: 'Allen',
-          fullName: 'Scott Allen',
-          deleting: false
+          fullName: 'Scott Allen'
         }
       ]);
 

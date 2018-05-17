@@ -5,7 +5,9 @@ import { bindActionCreators } from 'redux';
 import * as courseThunks from '../../redux/thunks/courseThunks';
 import CourseTable from './CourseTable';
 
-const mapStateToProps = state => ({ courses: state.get('courses').toJS() });
+const mapStateToProps = state => ({
+  courses: state.get('courses').toJS()
+});
 // Same as:
 // actions: course => dispatch(courseActions.createCourse(course))
 const mapDispatchToProps = dispatch => ({
@@ -31,11 +33,9 @@ class CoursesPage extends Component {
           className="btn btn-primary"
           style={{ margin: '0.5em' }}
           onClick={() => actions.goToAddCourse()}
-        >
-          Add Course
-        </button>
+        >Add Course</button>
         <CourseTable
-          courses={courses}
+          data={courses}
           onDelete={course => actions.deleteCourse(course)}
         />
       </>

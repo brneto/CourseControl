@@ -50,9 +50,10 @@ function* workSaveAuthor(action) {
 }
 
 function* workDeleteAuthor(action) {
+  const { author } = action.payload;
+
   try {
-    const { author } = action.payload;
-    const deletedAuthorId = yield call(authorApi.deleteAuthor, author.value);
+    const deletedAuthorId = yield call(authorApi.deleteAuthor, author.id);
     yield put(deleteAuthorSuccess(deletedAuthorId));
     yield put(deleteAuthorWarn());
   } catch(e) {

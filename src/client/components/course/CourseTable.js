@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CourseTableRow from './CourseTableRow';
 
 const CourseTable = ({
-  courses,
+  data,
   onDelete,
 }) => (
   <table className="table table-striped mt-md-3">
@@ -19,7 +19,7 @@ const CourseTable = ({
           </tr>
         </thead>
         <tbody>
-          {courses.map(course =>
+          {data.map(course =>
             <CourseTableRow
               key={course.id}
               {...course}
@@ -31,7 +31,7 @@ const CourseTable = ({
 );
 
 CourseTable.propTypes = {
-  courses: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

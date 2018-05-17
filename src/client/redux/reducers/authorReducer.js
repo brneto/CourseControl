@@ -4,6 +4,7 @@ import {
   loadAuthorsSuccess,
   createAuthorSuccess,
   updateAuthorSuccess,
+  deleteAuthorRequest,
   deleteAuthorSuccess
 } from '../actions/authorActions';
 
@@ -15,6 +16,14 @@ const authorReducer = handleActions({
     state.findKey(author => author.get('id') === action.payload.author.id),
     1, new Map(action.payload.author)
   ),
+  [deleteAuthorRequest]: (state, action) => {
+    action.payload.author.deleting = true;
+    return state.splice(
+      state.findKey(author => author.get('id') === action.payload.author.id),
+      1,
+      new Map(action.payload.author)
+    );
+  },
   [deleteAuthorSuccess]: (state, action) => state.splice(
     state.findKey(author => author.get('id') === action.payload.authorId),
     1

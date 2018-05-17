@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AuthorTableRow from './AuthorTableRow';
 
-class AuthorTable extends Component {
-  static propTypes = {
-    authors: PropTypes.array.isRequired
-  };
-
-  render() {
-    const { authors } = this.props;
-    return (
+const AuthorTable = ({
+  data,
+  onDelete,
+}) => (
       <table className="table table-striped mt-md-3">
         <caption>List of authors</caption>
         <thead>
@@ -20,13 +16,20 @@ class AuthorTable extends Component {
         </tr>
         </thead>
         <tbody>
-          {authors.map(author =>
-            <AuthorTableRow key={author.value} author={author} />
+          {data.map(author =>
+            <AuthorTableRow
+              key={author.id}
+              {...author}
+              onDelete={() => onDelete(author)}
+            />
           )}
         </tbody>
       </table>
     );
-  }
-}
+
+AuthorTable.propTypes = {
+  data: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default AuthorTable;

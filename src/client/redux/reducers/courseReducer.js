@@ -4,6 +4,7 @@ import {
   loadCoursesSuccess,
   createCourseSuccess,
   updateCourseSuccess,
+  deleteCourseRequest,
   deleteCourseSuccess
 } from '../actions/courseActions';
 
@@ -19,6 +20,14 @@ const courseReducer = handleActions(
         1,
         new Map(action.payload.course)
       ),
+    [deleteCourseRequest]: (state, action) => {
+      action.payload.course.deleting = true;
+      return state.splice(
+        state.findKey(course => course.get('id') === action.payload.course.id),
+        1,
+        new Map(action.payload.course)
+      );
+    },
     [deleteCourseSuccess]: (state, action) =>
       state.splice(
         state.findKey(course => course.get('id') === action.payload.courseId),

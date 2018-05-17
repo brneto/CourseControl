@@ -52,9 +52,6 @@ function* workSaveCourse(action) {
 function* workDeleteCourse(action) {
   const { course } = action.payload;
 
-  course.deleting = true;
-  yield put(updateCourseSuccess(course));
-
   try {
     const deletedCourseId = yield call(courseApi.deleteCourse, course.id);
     yield put(deleteCourseSuccess(deletedCourseId));

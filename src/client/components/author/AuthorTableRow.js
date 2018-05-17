@@ -1,52 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as authorThunks from '../../redux/thunks/authorThunks';
 
-const mapDispatchToProps = dispatch => (
-  { actions: bindActionCreators(authorThunks, dispatch) }
+const AuthorTableRow = ({
+  id,
+  fullName,
+  deleting,
+  onDelete
+}) => (
+  <tr>
+    <td>{id}</td>
+    <td><Link to={'/author/' + id}>{fullName}</Link></td>
+    <td>
+      <button
+        disabled={deleting}
+        className="btn btn-danger"
+        onClick={onDelete}
+      >{deleting ? 'Deleting...' : 'Delete'}</button>
+    </td>
+  </tr>
 );
 
-@connect(null, mapDispatchToProps)
-class AuthorTableRow extends Component {
-  static propTypes = {
-    author: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired
-  };
-
-  state = {
-    deleting: false
-  };
-
-  deleteAuthor = () => {
-    const { actions, author } = this.props;
-    actions.deleteAuthor(author);
-    this.setState({ deleting: true });
-  };
-
-  render() {
-    const { deleting } = this.state;
-    const { author } = this.props;
-    return (
-      <tr>
-        <td>{author.value}</td>
-        <td>
-          <Link to={'/author/' + author.value}>{author.content}</Link>
-        </td>
-        <td>
-          <button
-            disabled={deleting}
-            className="btn btn-danger"
-            onClick={this.deleteAuthor}
-          >
-            {deleting ? 'Deleting...' : 'Delete'}
-          </button>
-        </td>
-      </tr>
-    );
-  }
-}
+AuthorTableRow.propTypes = {
+  id: PropTypes.string.isRequired,
+  fullName: PropTypes.string.isRequired,
+  deleting: PropTypes.bool,
+  onDelete: PropTypes.func.isRequired
+};
 
 export default AuthorTableRow;

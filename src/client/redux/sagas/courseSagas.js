@@ -53,8 +53,8 @@ function* workDeleteCourse(action) {
   const { course } = action.payload;
 
   try {
-    const deletedCourseId = yield call(courseApi.deleteCourse, course.id);
-    yield put(deleteCourseSuccess(deletedCourseId));
+    const deletedCourse = yield call(courseApi.deleteCourse, course);
+    yield put(deleteCourseSuccess(deletedCourse));
     yield put(deleteCourseWarn());
   } catch(e) {
     throw(e);

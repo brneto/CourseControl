@@ -53,8 +53,8 @@ function* workDeleteAuthor(action) {
   const { author } = action.payload;
 
   try {
-    const deletedAuthorId = yield call(authorApi.deleteAuthor, author.id);
-    yield put(deleteAuthorSuccess(deletedAuthorId));
+    const deletedAuthor = yield call(authorApi.deleteAuthor, author);
+    yield put(deleteAuthorSuccess(deletedAuthor));
     yield put(deleteAuthorWarn());
   } catch(e) {
     throw(e);

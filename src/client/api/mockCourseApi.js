@@ -91,14 +91,14 @@ class CourseApi {
     });
   }
 
-  static deleteCourse(courseId) {
+  static deleteCourse(course) {
     return new Promise(resolve => {
       setTimeout(() => {
-        const indexOfCourseToDelete = courses.findIndex(course => {
-          course.id == courseId;
+        const indexOfCourseToDelete = courses.findIndex(c => {
+          c.id == course.id;
         });
         courses.splice(indexOfCourseToDelete, 1);
-        resolve(courseId);
+        resolve(course);
       }, delay);
     });
   }

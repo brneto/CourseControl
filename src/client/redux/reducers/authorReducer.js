@@ -30,7 +30,7 @@ const authorReducer = handleActions(
     },
     [deleteAuthorSuccess]: (state, action) =>
       state.splice(
-        state.findKey(author => author.get('id') === action.payload.authorId),
+        state.findKey(author => author.get('id') === action.payload.author.id),
         1
       )
   },

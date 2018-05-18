@@ -22,5 +22,5 @@ export const {
   UPDATE_AUTHOR_SUCCESS: author => ({ author }),
 
   DELETE_AUTHOR_REQUEST: author => ({ author }),
-  DELETE_AUTHOR_SUCCESS: authorId => ({ authorId })
+  DELETE_AUTHOR_SUCCESS: author => ({ author })
 });

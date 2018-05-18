@@ -65,14 +65,14 @@ class AuthorApi {
     });
   }
 
-  static deleteAuthor(authorId) {
+  static deleteAuthor(author) {
     return new Promise(resolve => {
       setTimeout(() => {
-        const indexOfAuthorToDelete = authors.findIndex(author => {
-          author.id == authorId;
+        const indexOfAuthorToDelete = authors.findIndex(a => {
+          a.id == author.id;
         });
         authors.splice(indexOfAuthorToDelete, 1);
-        resolve(authorId);
+        resolve(author);
       }, delay);
     });
   }

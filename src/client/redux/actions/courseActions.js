@@ -22,5 +22,5 @@ export const {
   UPDATE_COURSE_SUCCESS: course => ({ course }),
 
   DELETE_COURSE_REQUEST: course => ({ course }),
-  DELETE_COURSE_SUCCESS: courseId => ({ courseId })
+  DELETE_COURSE_SUCCESS: course => ({ course })
 });

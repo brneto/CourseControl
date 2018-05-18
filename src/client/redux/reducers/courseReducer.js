@@ -30,7 +30,7 @@ const courseReducer = handleActions(
     },
     [deleteCourseSuccess]: (state, action) =>
       state.splice(
-        state.findKey(course => course.get('id') === action.payload.courseId),
+        state.findKey(course => course.get('id') === action.payload.course.id),
         1
       )
   },

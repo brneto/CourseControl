@@ -40,7 +40,7 @@ function* workSave(action) {
 
   switch(form) {
     case 'author':
-      apiSaveMethod = courseApi.saveAuthor;
+      apiSaveMethod = authorApi.saveAuthor;
       break;
     case 'course':
       apiSaveMethod = courseApi.saveCourse;
@@ -69,7 +69,7 @@ function* workDelete(action) {
 
   switch(form) {
     case 'author':
-      apiDeleteMethod = courseApi.saveAuthor;
+      apiDeleteMethod = authorApi.saveAuthor;
       break;
     case 'course':
       apiDeleteMethod = courseApi.saveCourse;

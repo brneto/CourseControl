@@ -11,26 +11,26 @@ import {
 const defaultState = new List();
 const authorReducer = handleActions(
   {
-    [loadAuthorsSuccess]: (state, action) => fromJS(action.payload.authors),
+    [loadAuthorsSuccess]: (state, action) => fromJS(action.payload),
     [createAuthorSuccess]: (state, action) =>
-      state.push(new Map(action.payload.author)),
+      state.push(new Map(action.payload)),
     [updateAuthorSuccess]: (state, action) =>
       state.splice(
-        state.findKey(author => author.get('id') === action.payload.author.id),
+        state.findKey(author => author.get('id') === action.payload.id),
         1,
-        new Map(action.payload.author)
+        new Map(action.payload)
       ),
     [deleteAuthorRequest]: (state, action) => {
-      action.payload.author.deleting = true;
+      action.payload.deleting = true;
       return state.splice(
-        state.findKey(author => author.get('id') === action.payload.author.id),
+        state.findKey(author => author.get('id') === action.payload.id),
         1,
-        new Map(action.payload.author)
+        new Map(action.payload)
       );
     },
     [deleteAuthorSuccess]: (state, action) =>
       state.splice(
-        state.findKey(author => author.get('id') === action.payload.author.id),
+        state.findKey(author => author.get('id') === action.payload.id),
         1
       )
   },

@@ -1,26 +1,26 @@
 import { createActions } from 'redux-actions';
 
 export const {
+  saveCourseRequest,
+
   loadCoursesRequest,
   loadCoursesSuccess,
 
-  saveCourseRequest,
   createCourseSuccess,
   updateCourseSuccess,
 
   deleteCourseRequest,
   deleteCourseSuccess
 } = createActions({
-  LOAD_COURSES_REQUEST: null,
-  LOAD_COURSES_SUCCESS: courses => ({ courses }),
-
   SAVE_COURSE_REQUEST: [
-    course => ({ course }),
-    (course, form) => ({ form })
-  ],
-  CREATE_COURSE_SUCCESS: course => ({ course }),
-  UPDATE_COURSE_SUCCESS: course => ({ course }),
-
-  DELETE_COURSE_REQUEST: course => ({ course }),
-  DELETE_COURSE_SUCCESS: course => ({ course })
-});
+    course => course,
+    (course, form) => form
+  ]
+},
+  'LOAD_COURSES_REQUEST',
+  'LOAD_COURSES_SUCCESS',
+  'CREATE_COURSE_SUCCESS',
+  'UPDATE_COURSE_SUCCESS',
+  'DELETE_COURSE_REQUEST',
+  'DELETE_COURSE_SUCCESS'
+);

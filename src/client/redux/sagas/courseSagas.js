@@ -32,8 +32,8 @@ function* workLoadCourses() {
 }
 
 function* workSaveCourse(action) {
-  const { course } = action.payload;
-  const { form } = action.meta;
+  const course = action.payload;
+  const form = action.meta;
 
   yield put(startSubmit(form));
   try {
@@ -50,7 +50,7 @@ function* workSaveCourse(action) {
 }
 
 function* workDeleteCourse(action) {
-  const { course } = action.payload;
+  const course = action.payload;
 
   try {
     const deletedCourse = yield call(courseApi.deleteCourse, course);

@@ -32,8 +32,8 @@ function* workLoadAuthors() {
 }
 
 function* workSaveAuthor(action) {
-  const { author } = action.payload;
-  const { form } = action.meta;
+  const author = action.payload;
+  const form = action.meta;
 
   yield put(startSubmit(form));
   try {
@@ -50,7 +50,7 @@ function* workSaveAuthor(action) {
 }
 
 function* workDeleteAuthor(action) {
-  const { author } = action.payload;
+  const author = action.payload;
 
   try {
     const deletedAuthor = yield call(authorApi.deleteAuthor, author);

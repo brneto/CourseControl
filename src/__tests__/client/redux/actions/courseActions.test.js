@@ -8,7 +8,7 @@ describe('Course Actions', () => {
       const course = { id: 'clean-code', title: 'Clean Code' };
       const expectedAction = {
         type: 'CREATE_COURSE_SUCCESS',
-        payload: { course },
+        payload: course,
       };
 
       //act

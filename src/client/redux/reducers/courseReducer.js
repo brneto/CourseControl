@@ -11,26 +11,26 @@ import {
 const defaultState = new List();
 const courseReducer = handleActions(
   {
-    [loadCoursesSuccess]: (state, action) => fromJS(action.payload.courses),
+    [loadCoursesSuccess]: (state, action) => fromJS(action.payload),
     [createCourseSuccess]: (state, action) =>
-      state.push(new Map(action.payload.course)),
+      state.push(new Map(action.payload)),
     [updateCourseSuccess]: (state, action) =>
       state.splice(
-        state.findKey(course => course.get('id') === action.payload.course.id),
+        state.findKey(course => course.get('id') === action.payload.id),
         1,
-        new Map(action.payload.course)
+        new Map(action.payload)
       ),
     [deleteCourseRequest]: (state, action) => {
-      action.payload.course.deleting = true;
+      action.payload.deleting = true;
       return state.splice(
-        state.findKey(course => course.get('id') === action.payload.course.id),
+        state.findKey(course => course.get('id') === action.payload.id),
         1,
-        new Map(action.payload.course)
+        new Map(action.payload)
       );
     },
     [deleteCourseSuccess]: (state, action) =>
       state.splice(
-        state.findKey(course => course.get('id') === action.payload.course.id),
+        state.findKey(course => course.get('id') === action.payload.id),
         1
       )
   },

@@ -69,10 +69,10 @@ function* workDelete(action) {
 
   switch(form) {
     case 'author':
-      apiDeleteMethod = authorApi.saveAuthor;
+      apiDeleteMethod = authorApi.deleteAuthor;
       break;
     case 'course':
-      apiDeleteMethod = courseApi.saveCourse;
+      apiDeleteMethod = courseApi.deleteCourse;
       break;
     default:
       throw 'Unknown form name!';

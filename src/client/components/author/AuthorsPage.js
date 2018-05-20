@@ -12,7 +12,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(authorThunks, dispatch)
 });
-
 @connect(mapStateToProps, mapDispatchToProps)
 class AuthorsPage extends Component {
   static propTypes = {

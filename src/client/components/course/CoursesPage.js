@@ -13,7 +13,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(courseThunks, dispatch)
 });
-
 // Same as:
 // export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
 @connect(mapStateToProps, mapDispatchToProps)

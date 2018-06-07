@@ -6,10 +6,10 @@ const Select = ({ input, meta: { touched, error }, label, options }) => (
     <label htmlFor={input.name}>{label}</label>
     <div className="field">
       <select className="form-control" {...input}>
-        <option />
+        <option disabled />
         {options.map(option => (
-          <option key={option.get('value')} value={option.get('value')}>
-            {option.get('content')}
+          <option key={option.get('id')} value={option.get('id')}>
+            {option.get('fullName')}
           </option>
         ))}
       </select>

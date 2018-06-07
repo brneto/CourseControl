@@ -1,10 +1,12 @@
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
-import { createMatchSelector } from 'react-router-redux';
+import { matchPath } from 'react-router-dom';
 
 const courseSelector = state => {
-  const matchSelector = createMatchSelector('/course/:id');
-  const match = matchSelector(state.toJS());
+  const match = matchPath(
+    state.get('router').get('location').get('pathname'),
+    { path: '/course/:id' }
+  );
 
   if(match && state.get('courses').size) {
     const id = match.params.id;

@@ -1,5 +1,8 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
+import {
+  connectRouter as addRouterReducer,
+  routerMiddleware as createRouterMiddleware
+} from 'connected-react-router/immutable';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { initialState as preloadedState } from './initialState';
@@ -8,14 +11,15 @@ import { watchSagas } from '../sagas';
 import { DevTools } from '../utils/DevTools';
 
 const getStore = history => {
-  const sagaMiddleware = createSagaMiddleware();
+  const rootReducer = addRouterReducer(history)(reducers);
   const routerMiddleware = createRouterMiddleware(history);
+  const sagaMiddleware = createSagaMiddleware();
   const enhancer = compose(
-    applyMiddleware(thunkMiddleware, sagaMiddleware, routerMiddleware),
+    applyMiddleware(routerMiddleware, thunkMiddleware, sagaMiddleware),
     DevTools.instrument()
   );
+  const store = createStore(rootReducer, preloadedState, enhancer);
 
-  const store = createStore(reducers, preloadedState, enhancer);
   sagaMiddleware.run(watchSagas);
 
   return store;

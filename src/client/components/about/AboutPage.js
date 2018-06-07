@@ -17,6 +17,7 @@ const AboutPage = () => (
           <li className="list-group-item">Bootstrap</li>
           <li className="list-group-item">React</li>
           <li className="list-group-item">React Router</li>
+          <li className="list-group-item">Connected React Router</li>
           <li className="list-group-item">Immutable</li>
           <li className="list-group-item">Redux</li>
           <li className="list-group-item">Redux Form</li>

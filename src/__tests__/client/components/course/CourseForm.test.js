@@ -1,8 +1,8 @@
 import React from 'react';
+import { createBrowserHistory } from 'history';
 import { mount } from 'enzyme';
 import { createStore } from 'redux';
 import { fromJS } from 'immutable';
-import { routerReducer as router } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import { combineReducers } from 'redux-immutable';
 import {
@@ -11,16 +11,22 @@ import {
   stopSubmit,
   getFormSyncErrors
 } from 'redux-form/immutable';
+import {
+  connectRouter as addRouterReducer
+} from 'connected-react-router/immutable';
+import courses from '../../../../client/redux/reducers/courseReducer';
 import authors from '../../../../client/redux/reducers/authorReducer';
 import CourseForm from '../../../../client/components/course/CourseForm';
 
 function makeStore(initial = {}, logger) {
-  const reducers = { authors, router, form };
+  const reducers = addRouterReducer(createBrowserHistory())(
+    combineReducers({ courses, authors, form })
+  );
   const preloadedState = fromJS({ form: initial });
   if (logger) {
     reducers.logger = logger;
   }
-  return createStore(combineReducers(reducers), preloadedState);
+  return createStore(reducers, preloadedState);
 }
 
 const logger = jest.fn((state = {}) => state);

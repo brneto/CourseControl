@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
-import { createMatchSelector } from 'react-router-redux';
+import { matchPath } from 'react-router-dom';
 
 const authorFormatter = author =>
   author.set(
@@ -13,8 +13,10 @@ const authorsFormattedSelector = createSelector(
 );
 
 const authorSelector = state => {
-  const matchSelector = createMatchSelector('/author/:id');
-  const match = matchSelector(state.toJS());
+  const match = matchPath(
+    state.get('router').get('location').get('pathname'),
+    { path: '/author/:id' }
+  );
 
   if (match && state.get('authors').size) {
     const id = match.params.id;

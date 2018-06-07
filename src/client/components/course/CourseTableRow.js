@@ -13,7 +13,7 @@ const CourseTableRow = ({
   onDelete
 }) => (
   <tr>
-    <td><a href={watchHref} target="_blank">Watch</a></td>
+    <td><a href={watchHref} target="_blank" rel="noopener noreferrer">Watch</a></td>
     <td><Link to={'/course/' + id}>{title}</Link></td>
     <td>{authorId}</td>
     <td>{category}</td>

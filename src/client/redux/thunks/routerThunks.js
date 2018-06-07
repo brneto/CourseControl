@@ -1,5 +1,5 @@
 
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router/immutable';
 
 export const goToCourses = () => dispatch => dispatch(push('/courses'));
 

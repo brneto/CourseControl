@@ -1,11 +1,10 @@
-
 import toastr from 'toastr';
 import {
   loadRequest,
   saveRequest,
   removeRequest
 } from '../actions/crudActions';
-import { goToCourses, goToAuthors } from './routerThunks';
+import { goToCourses } from './routerThunks';
 
 export const load = () => dispatch => dispatch(loadRequest());
 

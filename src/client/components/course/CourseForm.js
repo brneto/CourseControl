@@ -26,7 +26,7 @@ const onSubmit = (values, dispatch, { form }) =>
 
 @connect(state => ({
   initialValues: courseByIdSelector(state),
-  authors: authorsFormattedSelector(state),
+  authors: authorsFormattedSelector(state)
 }))
 @reduxForm({ form: 'course', enableReinitialize: true, onSubmit, validate })
 class CourseForm extends Component {

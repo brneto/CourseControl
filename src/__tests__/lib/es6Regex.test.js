@@ -39,19 +39,19 @@ describe('Regex', () => {
     });
   });
 
-// @babel/plugin-transform-named-capturing-groups-regex
-  // Still not support by Babel yet
-  // describe('Named capture groups support', () => {
-  //   const pattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
-  //   const result = pattern.exec('2018-05-09');
-  //   it('should capture each group by name', () => {
-  //     expect(result.groups.year).toBe('2018');
-  //     expect(result.groups.month).toBe('05');
-  //     expect(result.groups.day).toBe('09');
-  //   });
-  // });
+  describe('Lookahead support', () => {
+    it('should support positive lookahead', () => {
+      const pattern = /\d+(?= dollars)/u;
+      expect(pattern.exec('42 dollars')[0]).toBe('42');
+    });
 
-  // Lookbehind not yet supported
+    it('should support negative lookahead', () => {
+      const pattern = /\d+(?! dollars)/u;
+      expect(pattern.exec('42 reais')[0]).toBe('42');
+    });
+  });
+
+// Lookbehind not yet supported
   // describe('Lookbehind support', () => {
   //   it('should support positive lookbehind', () => {
   //     const pattern = /(?<=\$\d+)/u;
@@ -61,6 +61,18 @@ describe('Regex', () => {
   //   it('should support negative lookbehind', () => {
   //     const pattern = /(?<!\$\d+)/u;
   //     expect(pattern.exec('&42')[0]).toBe('42');
+  //   });
+  // });
+
+// @babel/plugin-transform-named-capturing-groups-regex
+  // Still not support by Babel yet
+  // describe('Named capture groups support', () => {
+  //   const pattern = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/u;
+  //   const result = pattern.exec('2018-05-09');
+  //   it('should capture each group by name', () => {
+  //     expect(result.groups.year).toBe('2018');
+  //     expect(result.groups.month).toBe('05');
+  //     expect(result.groups.day).toBe('09');
   //   });
   // });
 

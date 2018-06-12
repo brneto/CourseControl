@@ -27,13 +27,26 @@ describe('Objects', () => {
 
     const obj2 = {
       user: {
-        firstname: 'Paulo',
-        lastname: 'Silva'
+        'firstname': 'Paulo',
+        'lastname': 'Silva'
       }
     };
 
     it('should be equal to objects properties not write into quotes', () => {
       expect(obj1).toEqual(obj2);
+    });
+  });
+
+  describe('optional chaining', () => {
+    const obj = {
+      user: {
+        firstname: 'Paulo',
+        lastname: 'Silva'
+      }
+    };
+
+    it('should be supported', () => {
+      expect(obj?.bar).toEqual(undefined);
     });
   });
 
@@ -76,11 +89,13 @@ describe('Objects', () => {
   describe('Private properties', () => {
     class IncreasingCounter {
       #count = 0;
+
       get value() {
         return this.#count;
       }
+
       increment() {
-        this.#count++;
+        this.#count = this.value + 1;
       }
     }
 

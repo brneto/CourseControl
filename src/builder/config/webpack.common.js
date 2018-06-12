@@ -63,7 +63,10 @@ export const commonConfig = {
       // improves compile time on larger projects
       {
         test: /\.js$/,
-        include: [/src[\\/]client/],
+        include: [
+          /[\\/]node_modules[\\/]@material[\\/]/,
+          /[\\/]src[\\/]client[\\/]/
+        ],
         //exclude: /node_modules[\\/](?!@material)/,
         use: [
           { loader: 'thread-loader' },

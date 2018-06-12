@@ -67,7 +67,7 @@ export const commonConfig = {
           /[\\/]node_modules[\\/]@material[\\/]/,
           /[\\/]src[\\/]client[\\/]/
         ],
-        //exclude: /node_modules[\\/](?!@material)/,
+        //exclude: /[\\/]node_modules[\\/](?!@material)/,
         use: [
           { loader: 'thread-loader' },
           { loader: 'babel-loader',

@@ -6,10 +6,10 @@ import courses from './courseReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
 const reducers = combineReducers({
+  form,
   authors,
   courses,
-  ajaxCallsInProgress,
-  form,
+  ajaxCallsInProgress
 });
 
 export { reducers };

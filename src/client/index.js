@@ -26,4 +26,8 @@ const ReduxApp = () => (
 
 store.dispatch(loadAuthors());
 store.dispatch(loadCourses());
-ReactDOM.render(<ReduxApp/>, document.getElementById('root'));
+
+ReactDOM.render(
+  <ReduxApp />,
+  document.getElementById('root')
+);

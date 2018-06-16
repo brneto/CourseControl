@@ -22,13 +22,14 @@ const getStore = history => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [routerMiddleware, thunkMiddleware, sagaMiddleware];
 
-  let createEnhancedStore =
-    compose(applyMiddleware(...middlewares))(createStore);
-
+  let createEnhancedStore;
   if (debug) {
     middlewares.push(logger);
     createEnhancedStore =
       composeWithDevTools(applyMiddleware(...middlewares))(createStore);
+  } else {
+    createEnhancedStore =
+      compose(applyMiddleware(...middlewares))(createStore);
   }
 
   const rootReducer = addRouterReducer(history)(reducers);

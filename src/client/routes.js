@@ -5,6 +5,17 @@ import AboutPage from './components/about/AboutPage';
 import { AuthorsPage, AuthorForm } from './components/author';
 import { CoursesPage, CourseForm } from './components/course';
 
+const routes = {
+  home: { path: '/', exact: true, component: HomePage },
+  courses: { path: '/courses', component: CoursesPage },
+  authors: { path: '/authors', component: AuthorsPage },
+  about: { path: '/about', component: AboutPage },
+  courseCreate: { path: '/course', component: CourseForm },
+  courseUpdate: { path: '/course/:id', component: CourseForm },
+  authorCreate: { path: '/author', component: AuthorForm },
+  authorUpdate: { path: '/author/:id', component: AuthorForm }
+};
+
 const NavLinks = () => (
   <ul className="navbar-nav">
     <li className="nav-item">
@@ -12,25 +23,25 @@ const NavLinks = () => (
       exact
       className="nav-link"
       activeClassName="active"
-      to="/">Home</NavLink>
+      to={routes.home.path}>Home</NavLink>
     </li>
     <li className="nav-item">
     <NavLink
       className="nav-link"
       activeClassName="active"
-      to="/courses">Courses</NavLink>
+      to={routes.courses.path}>Courses</NavLink>
     </li>
     <li className="nav-item">
     <NavLink
       className="nav-link"
       activeClassName="active"
-      to="/authors">Authors</NavLink>
+      to={routes.authors.path}>Authors</NavLink>
     </li>
     <li className="nav-item">
     <NavLink
       className="nav-link"
       activeClassName="active"
-      to="/about">About</NavLink>
+      to={routes.about.path}>About</NavLink>
     </li>
   </ul>
 );
@@ -38,14 +49,14 @@ const NavLinks = () => (
 const Routes = () => (
   <div style={{ marginTop: '0.5em' }}>
     <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/courses" component={CoursesPage} />
-      <Route path="/authors" component={AuthorsPage} />
-      <Route path="/about" component={AboutPage} />
-      <Route path="/course/:id" component={CourseForm} />
-      <Route path="/course" component={CourseForm} />
-      <Route path="/author/:id" component={AuthorForm} />
-      <Route path="/author" component={AuthorForm} />
+      <Route {...routes.home} />
+      <Route {...routes.courses} />
+      <Route {...routes.authors} />
+      <Route {...routes.about} />
+      <Route {...routes.courseUpdate} />
+      <Route {...routes.courseCreate} />
+      <Route {...routes.authorUpdate} />
+      <Route {...routes.authorCreate} />
     </Switch>
   </div>
 );

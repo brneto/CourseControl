@@ -14,7 +14,7 @@ function mapStateToProps(state) {
 
 //https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
 @hot(module)
-@withRouter
+//@withRouter
 @connect(mapStateToProps)
 class App extends Component {
   static propTypes = {

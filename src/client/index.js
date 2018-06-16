@@ -6,22 +6,17 @@ import { ConnectedRouter } from 'connected-react-router/immutable';
 import { getStore } from './redux/store';
 import { loadCourses } from './redux/thunks/courseThunks';
 import { loadAuthors } from './redux/thunks/authorThunks';
-import { DevTools } from './redux/utils/DevTools';
 import App from './components/App';
 import './index.scss';
 
-const debug = process.env.NODE_ENV !== 'production';
 const history = createBrowserHistory();
 const store = getStore(history);
 const ReduxApp = () => (
-  <>
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <App />
-      </ConnectedRouter>
-    </Provider>
-    {debug && <DevTools store={store} />}
-  </>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>
 );
 
 store.dispatch(loadAuthors());

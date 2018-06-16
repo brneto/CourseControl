@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   connectRouter as addRouterReducer,
   routerMiddleware as createRouterMiddleware
@@ -8,15 +9,13 @@ import createSagaMiddleware from 'redux-saga';
 import { initialState as preloadedState } from './initialState';
 import { reducers } from '../reducers';
 import { watchSagas } from '../sagas';
-import { DevTools } from '../utils/DevTools';
 
 const getStore = history => {
   const rootReducer = addRouterReducer(history)(reducers);
   const routerMiddleware = createRouterMiddleware(history);
   const sagaMiddleware = createSagaMiddleware();
-  const enhancer = compose(
-    applyMiddleware(routerMiddleware, thunkMiddleware, sagaMiddleware),
-    DevTools.instrument()
+  const enhancer = composeWithDevTools(
+    applyMiddleware(routerMiddleware, thunkMiddleware, sagaMiddleware)
   );
   const store = createStore(rootReducer, preloadedState, enhancer);
 

@@ -27,7 +27,11 @@
   "jest": {
     "rootDir": "src",
     "setupTestFrameworkScriptFile": "./setupTests.js",
-    "automock": false
+    "automock": false,
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "./__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   },
   "repository": {
     "type": "git",
@@ -102,6 +106,7 @@
     "express": "^4.16.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^23.1.0",
     "jest-enzyme": "^6.0.1",
     "mini-css-extract-plugin": "^0.4.0",

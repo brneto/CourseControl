@@ -2,8 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {
-  connectRouter as addRouterReducer,
-  routerMiddleware as createRouterMiddleware
+  connectRouter,
+  routerMiddleware
 } from 'connected-react-router/immutable';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
@@ -18,9 +18,12 @@ const logger = createLogger({
 });
 
 const getStore = history => {
-  const routerMiddleware = createRouterMiddleware(history);
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [routerMiddleware, thunkMiddleware, sagaMiddleware];
+  const middlewares = [
+    routerMiddleware(history),
+    thunkMiddleware,
+    sagaMiddleware
+  ];
 
   let createEnhancedStore;
   if (debug) {
@@ -32,7 +35,7 @@ const getStore = history => {
       compose(applyMiddleware(...middlewares))(createStore);
   }
 
-  const rootReducer = addRouterReducer(history)(reducers);
+  const rootReducer = connectRouter(history)(reducers);
   const store = createEnhancedStore(rootReducer, initialState);
 
   sagaMiddleware.run(watchSagas);

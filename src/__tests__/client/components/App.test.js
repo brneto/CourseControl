@@ -8,12 +8,13 @@ import App from '../../../client/components/App';
 
 const history = createBrowserHistory();
 const store = getStore(history);
-const element =
-<Provider store={store}>
-  <ConnectedRouter history={history}>
-    <App />
-  </ConnectedRouter>
-</Provider>;
+const element = (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>
+);
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

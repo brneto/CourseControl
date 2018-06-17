@@ -11,13 +11,11 @@ import { initialState } from './initialState';
 import { reducers } from '../reducers';
 import { watchSagas } from '../sagas';
 
-const debug = process.env.NODE_ENV !== 'production';
-
 const logger = createLogger({
   stateTransformer: state => state.toJS()
 });
 
-const getStore = history => {
+const getStore = (history, debug) => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
     routerMiddleware(history),

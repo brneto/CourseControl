@@ -9,8 +9,9 @@ import { loadAuthors } from './redux/thunks/authorThunks';
 import App from './components/App';
 import './index.scss';
 
+const debug = process.env.NODE_ENV !== 'production';
 const history = createBrowserHistory();
-const store = getStore(history);
+const store = getStore(history, debug);
 const ReduxApp = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>

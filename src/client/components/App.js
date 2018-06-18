@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
-import { Routes } from '../routes';
+import { Routes } from './router';
 import { Header } from './commons';
 
 function mapStateToProps(state) {

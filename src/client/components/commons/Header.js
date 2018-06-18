@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLinks } from '../../routes.js';
+import { NavLinks } from '../router';
 import LoadingDots from './LoadingDots';
 
 const Header = ({ loading }) => (

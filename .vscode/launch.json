@@ -9,7 +9,7 @@
         "request": "launch",
         "name": "Node",
         "program": "${workspaceFolder}/src/server/server.js",
-        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/babel-node",
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/babel-node",
         "console": "integratedTerminal",
         "env": {
           "NODE_ENV": "development"
@@ -20,7 +20,7 @@
         "request": "launch",
         "name": "Chrome",
         "url": "http://localhost:3000",
-        "webRoot": "${workspaceRoot}/src/client",
+        "webRoot": "${workspaceFolder}/src/client",
         "breakOnLoad": true,
         "sourceMapPathOverrides": {
           "webpack:///src/client/*": "${webRoot}/*"

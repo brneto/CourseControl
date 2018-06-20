@@ -6,7 +6,7 @@ import { commonConfig, htmlPluginOptions } from './webpack.common.js';
 
 export const devConfig = merge(commonConfig, {
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
   entry: {
     app: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true'

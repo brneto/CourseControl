@@ -79,7 +79,7 @@ export const commonConfig = {
               babelrc: false,
               presets: [
                 ['@babel/preset-env',  {
-                  forceAllTransforms: true,
+                  forceAllTransforms: !debug,
                   modules: false,
                   useBuiltIns: 'usage',
                   debug: true

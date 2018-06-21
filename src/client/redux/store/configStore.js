@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import {
   connectRouter,
   routerMiddleware
@@ -11,10 +11,6 @@ import { initialState } from './initialState';
 import { reducers } from '../reducers';
 import { watchSagas } from '../sagas';
 
-const logger = createLogger({
-  stateTransformer: state => state.toJS()
-});
-
 const getStore = (history, debug) => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
@@ -23,16 +19,16 @@ const getStore = (history, debug) => {
     sagaMiddleware
   ];
 
-  let createEnhancedStore;
-  if (debug) {
-    middlewares.push(logger);
-    createEnhancedStore =
-      composeWithDevTools(applyMiddleware(...middlewares))(createStore);
-  } else {
-    createEnhancedStore =
-      compose(applyMiddleware(...middlewares))(createStore);
-  }
+  if (debug)
+    middlewares.push(
+      createLogger({
+        stateTransformer: state => state.toJS()
+      })
+    );
 
+  const createEnhancedStore = composeWithDevTools(
+    applyMiddleware(...middlewares)
+  )(createStore);
   const rootReducer = connectRouter(history)(reducers);
   const store = createEnhancedStore(rootReducer, initialState);
 

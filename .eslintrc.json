@@ -42,5 +42,10 @@
     "react/no-array-index-key": 1,
     "react/no-unused-prop-types": 1,
     "react/no-unused-state": 1
+  },
+  "settings": {
+    "react": {
+      "version": "16.4"
+    }
   }
 }

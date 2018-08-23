@@ -4,7 +4,7 @@ import compression from 'compression';
 import express from 'express';
 import morgan from 'morgan';
 import open from 'open';
-import { builderMiddleware } from '../builder';
+import { builderMiddleware } from './builder';
 
 const app = express();
 const port = 3000;

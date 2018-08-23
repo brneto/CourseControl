@@ -2,11 +2,11 @@
   "apps" : [
     {
       "name"        : "app",
-      "script"      : "src/server/server.js",
+      "script"      : "src/server.js",
       "interpreter" : "node_modules/.bin/babel-node",
       "exec_mode"   : "fork",
       "autorestart" : false,
-      "watch"       : ["src/server", "src/builder"],
+      "watch"       : ["src/server.js", "src/builder"],
       "ignore_watch": ["*.test.js"],
       "env": {
         "NODE_ENV": "development"

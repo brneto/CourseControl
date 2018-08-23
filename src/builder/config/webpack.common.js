@@ -1,8 +1,10 @@
+import path from 'path';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+import CircularDependencyPlugin from 'circular-dependency-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import autoprefixer from 'autoprefixer';
 import flexbugsfixes from 'postcss-flexbugs-fixes';
 import StyleLintPlugin from 'stylelint-webpack-plugin';
-import path from 'path';
 
 const debug = process.env.NODE_ENV !== 'production';
 const filePrefix = debug ? '[name].bundle' : '[name].[contenthash].bundle';
@@ -149,6 +151,20 @@ export const commonConfig = {
     ]
   },
   plugins: [
+    // Recompile only updated code without vendor
+    new HardSourceWebpackPlugin(),
+    // Detects circular dependencies
+    new CircularDependencyPlugin({
+      // exclude detection of files based on a RegExp
+      exclude: /node_modules/,
+      // add errors to webpack instead of warnings
+      failOnError: true,
+      // allow import cycles that include an asyncronous import,
+      // e.g. via import(/* webpackMode: "weak" */ './file.js')
+      allowAsyncCycles: false,
+      // set the current working directory for displaying module paths
+      cwd: process.cwd(),
+    }),
     // Generate an external css file
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output

@@ -5,11 +5,12 @@ import { hot } from 'react-hot-loader';
 import { Routes } from './router';
 import { Header } from './commons';
 
-const mapStateToProps = state => ({
-  loading: state.get('ajaxCallsInProgress') > 0
-});
 //https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
-//@withRouter
+const mapStateToProps = state => ({
+  loading: state.get('ajaxCallsInProgress') > 0,
+  location: state.get('router').get('location'),
+});
+
 const App = ({ loading }) => (
   <div className="container-fluid">
     <Header loading={loading} />

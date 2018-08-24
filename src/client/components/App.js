@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import { loadingSelector, locationSelector } from '../redux/selectors';
@@ -13,16 +12,12 @@ const mapStateToProps = state => ({
   location: locationSelector(state)
 });
 
-const App = ({ loading }) => (
+const App = props => (
   <div className="container-fluid">
-    <Header loading={loading} />
+    <Header {...props} />
     <Routes />
   </div>
 );
-
-App.propTypes = {
-  loading: PropTypes.bool.isRequired
-};
 
 const connectedApp = connect(mapStateToProps)(App);
 export default hot(module)(connectedApp);

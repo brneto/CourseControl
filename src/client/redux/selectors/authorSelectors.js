@@ -7,6 +7,7 @@ const authorFormatter = author =>
     'fullName',
     `${author.get('firstName')} ${author.get('lastName')}`
   );
+
 const authorsFormattedSelector = createSelector(
   state => state.get('authors'),
   authors => authors.map(author => authorFormatter(author))
@@ -14,7 +15,10 @@ const authorsFormattedSelector = createSelector(
 
 const authorSelector = state => {
   const match = matchPath(
-    state.get('router').get('location').get('pathname'),
+    state
+      .get('router')
+      .get('location')
+      .get('pathname'),
     { path: '/author/:id' }
   );
 

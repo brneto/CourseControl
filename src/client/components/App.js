@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
+import { loadingSelector, locationSelector } from '../redux/selectors';
 import { Routes } from './router';
 import { Header } from './commons';
 
-//https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
+//https://github.com/ReactTraining/react-router/
+//blob/master/packages/react-router/docs/guides/blocked-updates.md
 const mapStateToProps = state => ({
-  loading: state.get('ajaxCallsInProgress') > 0,
-  location: state.get('router').get('location'),
+  loading: loadingSelector(state),
+  location: locationSelector(state)
 });
 
 const App = ({ loading }) => (

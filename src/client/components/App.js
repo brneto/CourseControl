@@ -6,11 +6,9 @@ import { hot } from 'react-hot-loader';
 import { Routes } from './router';
 import { Header } from './commons';
 
-function mapStateToProps(state) {
-  return {
-    loading: state.get('ajaxCallsInProgress') > 0
-  };
-}
+const mapStateToProps = state => ({
+  loading: state.get('ajaxCallsInProgress') > 0
+});
 
 //https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/blocked-updates.md
 @hot(module)

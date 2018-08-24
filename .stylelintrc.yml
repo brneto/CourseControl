@@ -223,13 +223,10 @@ rules:
   # just be 1 level selector. However, modifiers can introduce an additional compound selector.
   # Furthermore, generic qualifying selectors (e.g. `[dir="rtl"]`) can introduce yet another level.
   selector-max-compound-selectors: 4
-  # Because of a bug in the following rule related to nested properties scss syntax
-  # it needs to be disable to the lint work correctly.
-  no-descending-specificity: null
   # For specificity: disallow IDs (0). Allow for complex combinations of classes, pseudo-classes,
   # attribute modifiers based on selector-max-compound-selectors, plus an addition for
   # pseudo-classes (4). Allow for pseudo-elements (1).
-  # selector-max-specificity: 0,4,1
+  selector-max-specificity: 0,4,1
   at-rule-no-unknown:
     - true
     - ignoreAtRules:
@@ -258,24 +255,24 @@ rules:
     - ignoreProperties:
         - contain
   # There is no reason that a specific ID would be needed for UI components
-  # selector-max-id: 0
+  selector-max-id: 0
   # Qualifying types are not needed when using a naming system like BEM
-  # selector-no-qualifying-type: true
+  selector-no-qualifying-type: true
   # In general, we should not be modifying elements within our components, since we can't
   # predict the use cases in which users would add a certain type of element into a component.
-  # selector-max-type:
-  #   - 0
-  #  - ignoreTypes:
-  #      - /fieldset/
+  selector-max-type:
+    - 0
+    - ignoreTypes:
+        - /fieldset/
   # Styles for components should never need the universal selector.
-  # selector-max-universal: 0
-  # Ensure any defined symbols are prefixed with "mdc-"
-  # custom-media-pattern: ^mdc-.+
-  # custom-property-pattern: ^mdc-.+
-  # selector-class-pattern:
-  #  - ^mdc-.+
-  #  - resolveNestedSelectors: true
-  # selector-id-pattern: ^mdc-.+
+  selector-max-universal: 0
+  # Ensure any defined symbols are prefixed with "adc-"
+  custom-media-pattern: ^adc-.+
+  custom-property-pattern: ^adc-.+
+  selector-class-pattern:
+    - ^adc-.+
+    - resolveNestedSelectors: true
+  selector-id-pattern: ^adc-.+
   # Names are more semantic than numbers
   font-weight-notation: named-where-possible
   # http://www.paulirish.com/2010/the-protocol-relative-url/
@@ -311,7 +308,7 @@ rules:
   plugin/selector-bem-pattern:
     componentName: ^[a-z]+(?:-[a-z]+)*$
     # <namespace>-<block>__<element>*--<modifier>*[<attribute>]*
-    componentSelectors: ^\.mdc-{componentName}(?:__[a-z]+(?:-[a-z]+)*)*(?:--[a-z]+(?:-[a-z]+)*)*(?:\[.+\])*$
+    componentSelectors: ^\.adc-{componentName}(?:__[a-z]+(?:-[a-z]+)*)*(?:--[a-z]+(?:-[a-z]+)*)*(?:\[.+\])*$
     ignoreSelectors:
       - ^fieldset
       - ^\[aria\-disabled=(?:.+)\]
@@ -319,11 +316,11 @@ rules:
   # SCSS naming patterns, just like our CSS conventions above.
   # (note for $-vars we use a leading underscore for "private" variables)
   scss/dollar-variable-pattern:
-    - ^_?mdc-.+
+    - ^_?adc-.+
     -
       ignore: local
-  scss/at-function-pattern: ^mdc-.+
-  scss/at-mixin-pattern: ^mdc-.+
+  scss/at-function-pattern: ^adc-.+
+  scss/at-mixin-pattern: ^adc-.+
   # Prevents unneeded nesting selectors
   scss/selector-no-redundant-nesting-selector: true
   # Since leading underscores are not needed, they can be omitted

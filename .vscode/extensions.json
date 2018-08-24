@@ -3,9 +3,8 @@
 	// for the documentation about the extensions.json format
 	"recommendations": [
     // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
-    "joshpeng.sublime-babel-vscode",
-    "joshpeng.theme-onedark-sublime",
-    "joshpeng.theme-charcoal-oceanicnext",
+    "mgmcdermott.vscode-language-babel",
+    "naumovs.theme-oceanicnext",
     "dbaeumer.vscode-eslint",
     "NuclleaR.vscode-extension-auto-import",
     "donjayamanne.githistory",

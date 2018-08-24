@@ -3,6 +3,7 @@ ignoreFiles:
   - node_modules/**/*
   - packages/**/node_modules/**/*
   - build/**/*
+  - /**/*.js
 plugins:
   - stylelint-selector-bem-pattern
   - stylelint-scss

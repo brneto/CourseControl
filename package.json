@@ -24,7 +24,7 @@
     "watch:app": "tail -n +1 -f logs/app-err.log logs/app-out.log"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/src/setupTests.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
     "transformIgnorePatterns": [
       "node_modules/(?!@material)"
     ],

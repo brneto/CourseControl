@@ -36,8 +36,19 @@
     "babel/new-cap": 1,
     "babel/no-invalid-this": 1,
     "babel/object-curly-spacing": [1, "always"],
-    "babel/quotes": [2, "single"],
+    "babel/quotes": [2, "single", { "allowTemplateLiterals": true }],
     "babel/semi": 2,
+    "import/order": [1,
+      {"groups": [
+        "builtin",
+        "external",
+        "internal",
+        "parent",
+        "sibling",
+        "index"
+      ]}
+    ],
+    "import/newline-after-import": 1,
     "react/boolean-prop-naming": 1,
     "react/no-array-index-key": 1,
     "react/no-unused-prop-types": 1,

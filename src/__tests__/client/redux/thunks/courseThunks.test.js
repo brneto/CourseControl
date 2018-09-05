@@ -1,9 +1,8 @@
-import * as courseActions from '../../../../client/redux/actions/courseActions';
-import * as courseThunks from '../../../../client/redux/thunks/courseThunks';
-
 import thunk from 'redux-thunk';
 import nock from 'nock';
 import configureMockStore from 'redux-mock-store';
+import * as courseActions from '../../../../client/redux/actions/courseActions';
+import * as courseThunks from '../../../../client/redux/thunks/courseThunks';
 
 const middleware = [thunk];
 const mockstore = configureMockStore(middleware);

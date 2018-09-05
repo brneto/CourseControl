@@ -7,9 +7,9 @@ import {
 } from 'connected-react-router/immutable';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import { initialState } from './initialState';
 import { reducers } from '../reducers';
 import { watchSagas } from '../sagas';
+import { initialState } from './initialState';
 
 const getStore = (history, debug) => {
   const sagaMiddleware = createSagaMiddleware();

@@ -1,5 +1,5 @@
-import { all, takeEvery, call, put } from 'redux-saga/effects';
 import { startSubmit, stopSubmit } from 'redux-form/immutable';
+import { all, takeEvery, call, put } from 'redux-saga/effects';
 import { authorApi, courseApi } from '../../api';
 import {
   loadRequest,

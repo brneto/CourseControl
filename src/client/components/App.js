@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
+import { loadCourses } from '../redux/thunks/courseThunks';
+import { loadAuthors } from '../redux/thunks/authorThunks';
 import { loadingSelector, locationSelector } from '../redux/selectors';
 import { Routes } from '../router';
 import { Header } from './commons';
@@ -12,12 +14,32 @@ const mapStateToProps = state => ({
   location: locationSelector(state)
 });
 
-const App = props => (
-  <div className="container-fluid">
-    <Header {...props} />
-    <Routes />
-  </div>
-);
+const mapDispatchToProps = {
+  loadAuthors,
+  loadCourses,
+};
 
-const connectedApp = connect(mapStateToProps)(App);
-export default hot(module)(connectedApp);
+@hot(module)
+@connect(mapStateToProps, mapDispatchToProps)
+class App extends Component {
+
+  componentDidMount() {
+    const { loadAuthors, loadCourses } = this.props;
+
+    loadAuthors();
+    loadCourses();
+  }
+
+  render() {
+    const props = this.props;
+
+    return (
+      <div className="container-fluid">
+        <Header {...props} />
+        <Routes />
+      </div>
+    );
+  }
+}
+
+export default App;

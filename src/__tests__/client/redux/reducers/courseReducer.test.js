@@ -1,4 +1,4 @@
-import { initialState } from '../../../../client/redux/store';
+import { preloadedState } from '../../../../client/redux/store';
 import courseReducer from '../../../../client/redux/reducers/courseReducer';
 import  * as courseActions from '../../../../client/redux/actions/courseActions';
 
@@ -14,7 +14,7 @@ describe('Course Reducer', () => {
     nextState = courseReducer(state, action);
 
     //assert
-    expect(nextState).toEqual(initialState.get('courses'));
+    expect(nextState).toEqual(preloadedState.get('courses'));
   });
 
   it('should load courses when passed LOAD_COURSE_SUCCESS', () => {

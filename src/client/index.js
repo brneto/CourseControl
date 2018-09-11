@@ -1,29 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { createBrowserHistory } from 'history';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router/immutable';
-import { getStore } from './redux/store';
+import { configStore } from './redux/store';
 import { loadCourses } from './redux/thunks/courseThunks';
 import { loadAuthors } from './redux/thunks/authorThunks';
-import App from './components/App';
+import ReduxApp from './components/ReduxApp';
 import './index.scss';
 
-const debug = process.env.NODE_ENV !== 'production';
 const history = createBrowserHistory();
-const store = getStore(history, debug);
-const ReduxApp = () => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>
-);
+const store = configStore(history);
 
 store.dispatch(loadAuthors());
 store.dispatch(loadCourses());
 
-ReactDOM.render(
-  <ReduxApp />,
+const props = { store, history };
+render(
+  <ReduxApp {...props} />,
   document.getElementById('root')
 );

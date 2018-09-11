@@ -1,39 +1,34 @@
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import {
-  connectRouter,
-  routerMiddleware
-} from 'connected-react-router/immutable';
+import { routerMiddleware } from 'connected-react-router/immutable';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import { reducers } from '../reducers';
+import reducerWithRouter from '../reducers';
 import { watchSagas } from '../sagas';
-import { initialState } from './initialState';
+import preloadedState from './preloadedState';
 
-const getStore = (history, debug) => {
+const isDevelpment = process.env.NODE_ENV !== 'production';
+
+const configStore = (history) => {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
-    routerMiddleware(history),
+    sagaMiddleware,
     thunkMiddleware,
-    sagaMiddleware
+    routerMiddleware(history),
   ];
 
-  if (debug)
-    middlewares.push(
-      createLogger({
-        stateTransformer: state => state.toJS()
-      })
-    );
+  if (isDevelpment) {
+    middlewares.push(createLogger({ stateTransformer: state => state.toJS() }));
+  }
 
-  const createEnhancedStore = composeWithDevTools(
-    applyMiddleware(...middlewares)
-  )(createStore);
-  const rootReducer = connectRouter(history)(reducers);
-  const store = createEnhancedStore(rootReducer, initialState);
+  const reducer = reducerWithRouter(history);
+  //const persistedState = loadState();
+  const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
+  const store = createStore(reducer, preloadedState, enhancer);
 
   sagaMiddleware.run(watchSagas);
   return store;
 };
 
-export { getStore };
+export default configStore;

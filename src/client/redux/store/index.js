@@ -1,2 +1,2 @@
-export { initialState } from './initialState';
-export { getStore } from './configStore';
+export { default as preloadedState } from './preloadedState';
+export { default as configStore } from './configStore';

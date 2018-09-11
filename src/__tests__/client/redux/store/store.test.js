@@ -1,13 +1,18 @@
 import { createStore } from 'redux';
 import { fromJS } from 'immutable';
-import { reducers } from '../../../../client/redux/reducers';
-import { initialState as preloadedState } from '../../../../client/redux/store';
+import reducerWithRouter from '../../../../client/redux/reducers';
+import { preloadedState } from '../../../../client/redux/store';
 import * as courseActions from '../../../../client/redux/actions/courseActions';
 
 describe('Store', () => {
   it('should handle loading courses', () => {
     // arrange
-    const store = createStore(reducers, preloadedState);
+    const history = {
+      action: 'PUSH',
+      location: '/'
+    };
+    const reducer = reducerWithRouter(history);
+    const store = createStore(reducer, preloadedState);
     const courses = [
       { id: 'clean-code', title: 'Clean Code' },
       { id: 'design-pattern', title: 'Design Pattern' },

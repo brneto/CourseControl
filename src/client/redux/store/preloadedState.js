@@ -1,9 +1,9 @@
 import { fromJS } from 'immutable';
 
-const initialState = fromJS({
+const preloadedState = fromJS({
   authors: [],
   courses: [],
   ajaxCallsInProgress: 0
 });
 
-export { initialState };
+export default preloadedState;

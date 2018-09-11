@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 import { loadingSelector, locationSelector } from '../redux/selectors';
-import { Routes } from './router';
+import { Routes } from '../router';
 import { Header } from './commons';
 
 //https://github.com/ReactTraining/react-router/

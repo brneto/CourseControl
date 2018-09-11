@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
-import HomePage from './home/HomePage';
-import AboutPage from './about/AboutPage';
-import { AuthorsPage, AuthorForm } from './author';
-import { CoursesPage, CourseForm } from './course';
+import HomePage from './components/home/HomePage';
+import AboutPage from './components/about/AboutPage';
+import { AuthorsPage, AuthorForm } from './components/author';
+import { CoursesPage, CourseForm } from './components/course';
 
 const routes = {
   home: { path: '/', exact: true, component: HomePage },

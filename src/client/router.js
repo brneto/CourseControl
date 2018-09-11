@@ -6,14 +6,14 @@ import { AuthorsPage, AuthorForm } from './components/author';
 import { CoursesPage, CourseForm } from './components/course';
 
 const routes = {
-  home: { path: '/', exact: true, component: HomePage },
-  courses: { path: '/courses', component: CoursesPage },
-  authors: { path: '/authors', component: AuthorsPage },
-  about: { path: '/about', component: AboutPage },
-  courseCreate: { path: '/course', component: CourseForm },
-  courseUpdate: { path: '/course/:id', component: CourseForm },
-  authorCreate: { path: '/author', component: AuthorForm },
-  authorUpdate: { path: '/author/:id', component: AuthorForm }
+  home: { path: '/', exact: true },
+  courses: { path: '/courses' },
+  authors: { path: '/authors' },
+  about: { path: '/about' },
+  courseCreate: { path: '/course' },
+  courseUpdate: { path: '/course/:id' },
+  authorCreate: { path: '/author' },
+  authorUpdate: { path: '/author/:id' }
 };
 
 const NavLinks = () => (
@@ -49,14 +49,14 @@ const NavLinks = () => (
 const Routes = () => (
   <div style={{ marginTop: '0.5em' }}>
     <Switch>
-      <Route {...routes.home} />
-      <Route {...routes.courses} />
-      <Route {...routes.authors} />
-      <Route {...routes.about} />
-      <Route {...routes.courseUpdate} />
-      <Route {...routes.courseCreate} />
-      <Route {...routes.authorUpdate} />
-      <Route {...routes.authorCreate} />
+      <Route {...routes.home} component={HomePage} />
+      <Route {...routes.courses} component={CoursesPage} />
+      <Route {...routes.authors} component={AuthorsPage} />
+      <Route {...routes.about} component={AboutPage} />
+      <Route {...routes.courseUpdate} component={CourseForm} />
+      <Route {...routes.courseCreate} component={CourseForm} />
+      <Route {...routes.authorUpdate} component={AuthorForm} />
+      <Route {...routes.authorCreate} component={AuthorForm} />
     </Switch>
   </div>
 );

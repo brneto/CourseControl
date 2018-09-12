@@ -75,7 +75,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.0.1",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",
@@ -141,7 +141,7 @@
     "webpack": "^4.18.0",
     "webpack-dev-middleware": "^3.3.0",
     "webpack-hot-middleware": "^2.23.1",
-    "webpack-manifest-plugin": "^2.0.3",
+    "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.1.4"
   }
 }

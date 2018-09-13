@@ -11,11 +11,12 @@ import preloadedState from './preloadedState';
 const isDevelpment = process.env.NODE_ENV !== 'production';
 
 const configStore = (history) => {
+  //ensure that redux-saga is the last middleware in the call chain.
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [
-    sagaMiddleware,
-    thunkMiddleware,
     routerMiddleware(history),
+    thunkMiddleware,
+    sagaMiddleware,
   ];
 
   if (isDevelpment) {

@@ -119,7 +119,7 @@
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
-    "jest-enzyme": "^6.1.1",
+    "jest-enzyme": "^6.1.2",
     "mini-css-extract-plugin": "^0.4.3",
     "morgan": "^1.9.1",
     "nock": "^10.0.0",

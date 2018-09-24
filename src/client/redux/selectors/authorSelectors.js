@@ -32,7 +32,7 @@ const authorSelector = state => {
 
 const authorByIdSelector = createSelector(
   authorSelector,
-  author => (author ? author : new Map())
+  author => author || new Map()
 );
 
 export { authorsFormattedSelector, authorByIdSelector };

@@ -20,7 +20,7 @@ const courseSelector = state => {
 
 const courseByIdSelector = createSelector(
   courseSelector,
-  course => course ? course : new Map()
+  course => course || new Map()
 );
 
 export { courseByIdSelector };

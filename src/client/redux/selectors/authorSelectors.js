@@ -1,6 +1,6 @@
 import { Map } from 'immutable';
 import { createSelector } from 'reselect';
-import { matchPath } from 'react-router-dom';
+import { createMatchSelector } from 'connected-react-router/immutable';
 
 const authorFormatter = author =>
   author.set(
@@ -14,13 +14,15 @@ const authorsFormattedSelector = createSelector(
 );
 
 const authorSelector = state => {
-  const match = matchPath(
-    state
-      .get('router')
-      .get('location')
-      .get('pathname'),
-    { path: '/author/:id' }
-  );
+  // The argument are the props to match against,
+  // they are identical to the matching props Route accepts:
+  // {
+  //   path, // like /users/:id
+  //   strict, // optional, defaults to false
+  //   exact // optional, defaults to false
+  // }
+  const getMatch = createMatchSelector({ path: '/author/:id' });
+  const match = getMatch(state);
 
   if (match && state.get('authors').size) {
     const id = match.params.id;

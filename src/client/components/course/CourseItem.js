@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const CourseTableRow = ({
+const CourseItem = ({
   id,
   title,
   watchHref,
@@ -28,7 +28,7 @@ const CourseTableRow = ({
   </tr>
 );
 
-CourseTableRow.propTypes = {
+CourseItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   watchHref: PropTypes.string.isRequired,
@@ -39,4 +39,4 @@ CourseTableRow.propTypes = {
   onDelete: PropTypes.func.isRequired
 };
 
-export default CourseTableRow;
+export default CourseItem;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Provider } from 'react-redux';
+import { hot } from 'react-hot-loader';
 import { ConnectedRouter } from 'connected-react-router/immutable';
 import App from './App';
 
-const ReduxApp = ({ store, history }) => (
+const ReduxApp = ({ history, store }) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <App />
@@ -16,4 +17,4 @@ ReduxApp.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export default ReduxApp;
+export default hot(module)(ReduxApp);

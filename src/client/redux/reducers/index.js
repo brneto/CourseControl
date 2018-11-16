@@ -6,13 +6,12 @@ import authors from './authorReducer';
 import courses from './courseReducer';
 import ajaxCallsInProgress from './ajaxStatusReducer';
 
-const reducers = combineReducers({
+const createRootReducer = history => combineReducers({
+  router: connectRouter(history),
   form,
   authors,
   courses,
   ajaxCallsInProgress
 });
 
-const reducerWithRouter = (history) => connectRouter(history)(reducers);
-
-export default reducerWithRouter;
+export default createRootReducer;

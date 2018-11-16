@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { routerMiddleware } from 'connected-react-router/immutable';
 import thunkMiddleware from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import reducerWithRouter from '../reducers';
+import createRootReducer from '../reducers';
 import { watchSagas } from '../sagas';
 import preloadedState from './preloadedState';
 
@@ -23,10 +23,10 @@ const configStore = (history) => {
     middlewares.push(createLogger({ stateTransformer: state => state.toJS() }));
   }
 
-  const reducer = reducerWithRouter(history);
+  const rootReducer = createRootReducer(history);
   //const persistedState = loadState();
   const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
-  const store = createStore(reducer, preloadedState, enhancer);
+  const store = createStore(rootReducer, preloadedState, enhancer);
 
   sagaMiddleware.run(watchSagas);
   return store;

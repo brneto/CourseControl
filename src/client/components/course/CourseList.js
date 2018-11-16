@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CourseTableRow from './CourseTableRow';
+import CourseItem from './CourseItem';
 
-const CourseTable = ({ data, onDelete }) => (
+const CourseList = ({ data, onDelete }) => (
   <table className="table table-striped mt-md-3">
     <caption>List of courses</caption>
     <thead>
@@ -17,7 +17,7 @@ const CourseTable = ({ data, onDelete }) => (
     </thead>
     <tbody>
       {data.map(course => (
-        <CourseTableRow
+        <CourseItem
           key={course.id}
           {...course}
           onDelete={() => onDelete(course)}
@@ -27,9 +27,9 @@ const CourseTable = ({ data, onDelete }) => (
   </table>
 );
 
-CourseTable.propTypes = {
+CourseList.propTypes = {
   data: PropTypes.array.isRequired,
   onDelete: PropTypes.func.isRequired
 };
 
-export default CourseTable;
+export default CourseList;

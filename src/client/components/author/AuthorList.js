@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AuthorTableRow from './AuthorTableRow';
+import AuthorItem from './AuthorItem';
 
-const AuthorTable = ({ data, onDelete }) => (
+const AuthorList = ({ data, onDelete }) => (
   <table className="table table-striped mt-md-3">
     <caption>List of authors</caption>
     <thead>
@@ -14,7 +14,7 @@ const AuthorTable = ({ data, onDelete }) => (
     </thead>
     <tbody>
       {data.map(author => (
-        <AuthorTableRow
+        <AuthorItem
           key={author.id}
           {...author}
           onDelete={() => onDelete(author)}
@@ -24,9 +24,9 @@ const AuthorTable = ({ data, onDelete }) => (
   </table>
 );
 
-AuthorTable.propTypes = {
+AuthorList.propTypes = {
   data: PropTypes.array.isRequired,
   onDelete: PropTypes.func.isRequired
 };
 
-export default AuthorTable;
+export default AuthorList;

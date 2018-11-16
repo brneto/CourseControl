@@ -2,12 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const AuthorTableRow = ({
-  id,
-  fullName,
-  deleting,
-  onDelete
-}) => (
+const AuthorItem = ({ id, fullName, deleting, onDelete }) => (
   <tr>
     <td>{id}</td>
     <td><Link to={'/author/' + id}>{fullName}</Link></td>
@@ -21,11 +16,11 @@ const AuthorTableRow = ({
   </tr>
 );
 
-AuthorTableRow.propTypes = {
+AuthorItem.propTypes = {
   id: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
   deleting: PropTypes.bool,
   onDelete: PropTypes.func.isRequired
 };
 
-export default AuthorTableRow;
+export default AuthorItem;

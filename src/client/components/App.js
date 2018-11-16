@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hot } from 'react-hot-loader';
 import { loadCourses } from '../redux/thunks/courseThunks';
 import { loadAuthors } from '../redux/thunks/authorThunks';
 import { loadingSelector, locationSelector } from '../redux/selectors';
@@ -19,7 +18,6 @@ const mapDispatchToProps = {
   loadCourses,
 };
 
-@hot(module)
 @connect(mapStateToProps, mapDispatchToProps)
 class App extends Component {
 

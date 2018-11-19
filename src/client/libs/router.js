@@ -7,22 +7,22 @@ import { CoursesPage, CourseForm } from '../components/course';
 
 const routes = {
   home: { path: '/', exact: true },
-  courses: { path: '/courses' },
-  authors: { path: '/authors' },
   about: { path: '/about' },
+  authors: { path: '/authors' },
+  author: { path: '/author/:id' },
+  courses: { path: '/courses' },
   course: { path: '/course/:id' },
-  author: { path: '/author/:id' }
 };
 
 const Routes = () => (
   <div style={{ marginTop: '0.5em' }}>
     <Switch>
       <Route {...routes.home} component={HomePage} />
-      <Route {...routes.courses} component={CoursesPage} />
-      <Route {...routes.course} component={CourseForm} />
+      <Route {...routes.about} component={AboutPage} />
       <Route {...routes.authors} component={AuthorsPage} />
       <Route {...routes.author} component={AuthorForm} />
-      <Route {...routes.about} component={AboutPage} />
+      <Route {...routes.courses} component={CoursesPage} />
+      <Route {...routes.course} component={CourseForm} />
     </Switch>
   </div>
 );

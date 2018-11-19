@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import { fromJS } from 'immutable';
 import reducerWithRouter from '../../../../client/redux/reducers';
-import { preloadedState } from '../../../../client/redux/store';
+import preloadedState from '../../../../client/redux/store/preloadedState';
 import * as courseActions from '../../../../client/redux/actions/courseActions';
 
 describe('Store', () => {

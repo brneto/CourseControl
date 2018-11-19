@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { loadCourses } from '../redux/thunks/courseThunks';
 import { loadAuthors } from '../redux/thunks/authorThunks';
 import { loadingSelector, locationSelector } from '../redux/selectors';
-import { Routes } from '../router';
+import { Routes } from '../libs/router';
 import { Header } from './commons';
 
 //https://github.com/ReactTraining/react-router/

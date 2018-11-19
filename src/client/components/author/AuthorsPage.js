@@ -15,17 +15,14 @@ const AuthorsPage = ({ authors, goToAddAuthor, deleteAuthor }) => (
     >
       Add Author
     </button>
-    <AuthorList
-      data={authors}
-      onDelete={deleteAuthor}
-    />
+    <AuthorList data={authors} onDelete={deleteAuthor} />
   </>
 );
 
 AuthorsPage.propTypes = {
   authors: PropTypes.array.isRequired,
   goToAddAuthor: PropTypes.func.isRequired,
-  deleteAuthor: PropTypes.func.isRequired,
+  deleteAuthor: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

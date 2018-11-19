@@ -1,4 +1,4 @@
-import { preloadedState } from '../../../../client/redux/store';
+import preloadedState from '../../../../client/redux/store/preloadedState';
 import courseReducer from '../../../../client/redux/reducers/courseReducer';
 import  * as courseActions from '../../../../client/redux/actions/courseActions';
 

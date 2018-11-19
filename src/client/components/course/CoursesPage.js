@@ -11,18 +11,17 @@ const CoursesPage = ({ courses, goToAddCourse, deleteCourse }) => (
       className="btn btn-primary"
       style={{ margin: '0.5em' }}
       onClick={goToAddCourse}
-    >Add Course</button>
-    <CourseList
-      data={courses}
-      onDelete={deleteCourse}
-    />
+    >
+      Add Course
+    </button>
+    <CourseList data={courses} onDelete={deleteCourse} />
   </>
 );
 
 CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
   goToAddCourse: PropTypes.func.isRequired,
-  deleteCourse: PropTypes.func.isRequired,
+  deleteCourse: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

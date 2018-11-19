@@ -19,10 +19,10 @@ const Routes = () => (
     <Switch>
       <Route {...routes.home} component={HomePage} />
       <Route {...routes.courses} component={CoursesPage} />
-      <Route {...routes.authors} component={AuthorsPage} />
-      <Route {...routes.about} component={AboutPage} />
       <Route {...routes.course} component={CourseForm} />
+      <Route {...routes.authors} component={AuthorsPage} />
       <Route {...routes.author} component={AuthorForm} />
+      <Route {...routes.about} component={AboutPage} />
     </Switch>
   </div>
 );
